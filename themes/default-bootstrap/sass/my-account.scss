@@ -1,0 +1,249 @@
+@import "compass";
+@import "theme_variables";
+
+.myac {
+    &-wrapper {
+        margin: 0 -30px;
+        display: -webkit-flex;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        #description {
+            visibility: hidden;
+            width: 100%;
+            height: 300px;
+        }
+        .label {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .tab-content {
+            padding: 0 0 60px;
+            margin: 55px 100px 0;
+            max-width: 1215px;
+            border-bottom: 1px solid rgba($myaccount-dark-blue, .15);
+        }
+        .nav-tabs {
+            margin: 0 -15px;
+            padding: 0 70px 0 115px;
+            @include display-flex;
+            @include align-items(center);
+            > li {
+                border-right: 2px solid $myaccount-white;
+                margin: 0;
+                &.button-wrap {
+                    text-align: right;
+                    @include flex-grow(1);
+                    a {
+                        padding-top: 11px;
+                        padding-bottom: 11px;
+                        margin-top: -10px;
+                        color: $light-text-color;
+                    }
+                }
+                &.last,
+                &:last-of-type {
+                    border-right: none;
+                    a {
+                    }
+                }
+                a {
+                    border: none;
+                    display: inline-block;
+                    font-family: $font-family-medium;
+                    font-size: $myac-font;
+                    font-weight: 500;
+                    line-height: 1;
+                    padding: 7px 30px;
+                }
+                &.active {
+                    border: none;
+                    a {
+                        padding-top: 11px;
+                        padding-bottom: 11px;
+                        &:before {
+                            border-width: 7px 11px;
+                            margin-left: -11px;
+                        }
+                    }
+                }
+            }
+        }
+        .dashboard {
+            background-color: $bg-dark-blue;
+            &-title {
+                color: $light-text-color;
+                font-size: em(34px);
+                font-weight: 500;
+                padding: 0;
+                margin: 0;
+            }
+            .myac-link {
+                &, &:hover {
+                    color: $light-text-color;
+                }
+                &:hover,
+                &.selected {
+                    color: $dark-background;
+                    background: $light-background;
+                }
+            }
+        }
+    }
+    &-links {
+        margin: 30px -15px 0;
+        border-bottom: 1px solid rgba($light-border-color, .15);
+    }
+    &-link {
+        display: block;
+
+        font-family: $font-family-medium;
+        font-size: $myac-font;
+        font-weight: 500;
+        line-height: 1;
+
+        padding: 20px 30px;
+        border-top: 1px solid rgba($light-border-color, .15);
+        &-num {
+            font-family: $font-family-light;
+        }
+        &-wrap {
+
+        }
+    }
+    &-column {
+        padding-top: 45px;
+        padding-bottom: 165px;
+    }
+}
+
+#columns {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.vin {
+    @include display-flex;
+    input {
+        margin-right: 20px;
+    }
+    &-submit {
+        padding: 10px 30px;
+        &#myAccountAddProduct {
+            margin: 40px 100px;
+        }
+    }
+}
+
+#features {
+    input[type='checkbox'] {
+        display: none;
+        &:checked ~ .label {
+            .checkbox {
+                &:before {
+                    display: inline-block;
+                    width: 12px;
+                    height: 8px;
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    margin: -7px 0 0 -6px;
+                    border-style: solid;
+                    border-color: $myaccount-light-blue;
+                    border-width: 0 0 2px 2px;
+                    @include rotate(-45deg);
+                }
+            }
+        }
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .checkbox {
+        cursor: pointer;
+        min-height: 0;
+        margin: 0 4px 0 0;
+        overflow: hidden;
+        position: relative;
+        width: 17px;
+        height: 17px;
+        border: 1px solid $myaccount-grey;
+    }
+}
+#images {
+    .jFiler-input-dragDrop {
+        width: 100%;
+    }
+}
+
+.auto-table {
+    td {
+        padding: 0 20px 10px 0;
+        font-weight: 500;
+        line-height: 1;
+        font-size: $font-small;
+        color: rgba($base-body-color, .85);
+        vertical-align: top;
+    }
+    &-name {
+        font-family: $font-family-medium;
+    }
+    &-value {}
+}
+
+.title-wrap {
+    font-size: 1em;
+    margin: 0 0 20px;
+    padding: 0;
+    > * {
+        color: $blue-light-color;
+        font-size: $font-title-small;
+        font-weight: 500;
+        line-height: 1;
+    }
+}
+.required {
+    .label {
+        span {
+            color: $myaccount-light-red;
+            font-size: 1em;
+        }
+    }
+}
+
+.label {
+    color: rgba($base-body-color, .8);
+    font-family: $font-custom;
+    font-size: $myac-font;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0 0 10px;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.btn-update {
+    width: 184px;
+}
+#preloader_list {
+    background: rgba(#000, .5);
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -32px;
+        margin-top: -32px;
+    }
+}

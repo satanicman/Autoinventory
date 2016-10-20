@@ -1,0 +1,5 @@
+Una de las ordenes que contienen el producto se cancelo
+
+Producto: {product_name} 
+Suma: -{amount} 
+Descripcion: {description}

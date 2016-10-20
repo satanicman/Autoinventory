@@ -1,0 +1,17 @@
+.idTabs
+{
+    height: auto!important;
+}
+#idTab4
+{
+    border: 1px solid #d0d3d8;
+    background: #D0D1D5;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+#idTab4 label
+{
+    display: block;
+    margin-bottom: 10px;
+}

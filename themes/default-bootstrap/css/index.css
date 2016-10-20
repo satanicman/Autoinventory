@@ -1,0 +1,215 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.header-container, .footer-container {
+  background: none;
+}
+
+.index-header, .index-subheading {
+  color: white;
+  font-family: "BebasRegular", serif;
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 3.5px;
+}
+
+.inner {
+  border-style: solid;
+  border-color: rgba(245, 245, 245, 0.2);
+}
+.inner-top {
+  border-width: 0 0 1px;
+}
+.inner-bottom {
+  border-width: 1px 0 0;
+}
+
+.index-header {
+  font-size: 4.500em;
+  margin: 0 0 10px;
+}
+
+.index-subheading {
+  font-size: 3.250em;
+  margin: 0;
+}
+
+#index #center_column {
+  padding: 0 0 135px;
+}
+
+#index_search {
+  max-width: 920px;
+  margin: 80px auto 0;
+  background: rgba(255, 255, 255, 0.93);
+  -moz-box-shadow: 0 5px 8px rgba(15, 34, 71, 0.4);
+  -webkit-box-shadow: 0 5px 8px rgba(15, 34, 71, 0.4);
+  box-shadow: 0 5px 8px rgba(15, 34, 71, 0.4);
+}
+#index_search .tab-content {
+  margin: 0;
+}
+#index_search .tab-pane {
+  padding: 45px 85px;
+}
+#index_search .nav-tabs {
+  border: none;
+}
+#index_search .nav-tabs li {
+  width: 50%;
+  text-align: center;
+  background-color: #1b3055;
+  position: relative;
+  padding: 22px;
+  border-bottom: 1px solid transparent;
+  margin: 0;
+}
+#index_search .nav-tabs li:before {
+  content: '';
+  display: inline-block;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 10px 15px;
+  border-top-color: #1b3055;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -10px;
+}
+#index_search .nav-tabs li a {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  padding: 0 0 0 55px;
+  position: relative;
+  border: none;
+  margin: 0;
+}
+#index_search .nav-tabs li a:hover {
+  border: none;
+  background: none;
+}
+#index_search .nav-tabs li a:before {
+  width: 38px;
+  height: 38px;
+  content: '';
+  display: inline-block;
+  border: 1px solid rgba(251, 251, 250, 0.5);
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -19px;
+}
+#index_search .nav-tabs li.active {
+  background: none;
+  border-bottom-color: rgba(27, 48, 85, 0.2);
+}
+#index_search .nav-tabs li.active a {
+  color: #3c91da;
+  background: none;
+  border: none;
+}
+#index_search .nav-tabs li.active a:before {
+  border: 1px solid rgba(27, 48, 85, 0.5);
+}
+#index_search .nav-tabs li.active:before {
+  display: none;
+}
+
+#searchForm .label {
+  padding: 10px 0;
+}
+#searchForm .label.bottom {
+  padding: 18px 0;
+  text-align: center;
+  color: #0f2247;
+}
+#searchForm .btn {
+  display: block;
+  margin: 5px auto 0;
+  width: 420px;
+}
+#searchForm .bottom-line, #searchForm .top-line {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+#searchForm .bottom-line .form-group:first-of-type, #searchForm .top-line .form-group:first-of-type {
+  padding-left: 0;
+}
+#searchForm .bottom-line .form-group:last-of-type, #searchForm .top-line .form-group:last-of-type {
+  padding-right: 0;
+}
+#searchForm .form-group {
+  padding: 0 20px;
+  margin-bottom: 45px;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+#searchForm .form-group.half {
+  -webkit-flex-basis: 50%;
+  flex-basis: 50%;
+}
+#searchForm .form-group.small {
+  -webkit-flex-basis: 140px;
+  flex-basis: 140px;
+}
+
+#page .columns-container {
+  background: none;
+}
+
+/*# sourceMappingURL=index.css.map */

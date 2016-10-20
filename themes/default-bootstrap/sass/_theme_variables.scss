@@ -1,0 +1,144 @@
+@import 'bootstrap_lib/_variables';
+@import 'sprite';
+
+//------- FONTS
+$font-family:				  		"GothamProRegular", Arial, Helvetica, sans-serif;
+$font:						  		normal 16px/18px $font-family;
+$font-custom:                 		"GothamProRegular", 'Open Sans', sans-serif;
+$font-icon:                   		"FontAwesome";
+$font-family-medium:                "GothamProMedium";
+$font-family-light:                	"GothamProLight";
+$font-medium:						normal 16px/18px $font-family-medium;
+$fa-css-prefix:       				icon !default;
+$font-x-small:						0.750em; //12px
+$font-small:						0.875em; //14px
+$myac-font:							1.125em; //18px
+$font-title-small:					1.375em; //22px
+$font-title-sub:					1.500em; //24px
+$font-title-main:					1.875em; //30px
+$font-large:						2.250em; //36px
+
+
+//-------- BORDERS
+$base-border-color:					#d6d4d4;
+$main_border:						1px solid $base-border-color;
+$dark-border-color:					#333;
+$light-border-color:				#fff;
+$homepage-footer-border:            #d9d9d9;
+$myaccount-white:					#dbdee4;
+$myaccount-dark-blue:				#0f2247;
+$myaccount-light-blue: 				#3c91da;
+$myaccount-grey: 					#c3c8d1;
+$myaccount-dark-grey: 				#9fa2ad;
+$myaccount-red: 					#e11e1e;
+$myaccount-light-red: 				#e64e18;
+
+//--------- BACKGROUNDS
+$base-box-bg:                       #fbfbfb;
+$table-background:                  $base-box-bg;
+$dark-background:                   #1b3055;
+$light-background:                  #fff;
+$homepage-footer-bg:                #f2f2f2;
+$bg-dark-blue: 						#3c91da;
+$bg-dark-grey: 						#c3c8d1;
+$bg-green: 							#32cc70;
+$registration-bg-dark-blue:         #0f2247;
+
+//--------- COLORS
+$base-body-color:                   #0f2247;
+$base-text-color:                   #333;
+$base-heading-color:				#555454;
+$base-title-color:					$base-text-color;
+$light-text-color:                  #fff;
+$link-color:						$link-color;
+$blue-light-color:					#3c91da;
+$link-hover-color:                  $link-hover-color;
+$description-color:					#666;
+
+
+//--------- Indents
+$base-page-indent:                 	$grid-gutter-width;
+$base-box-padding:                  14px 18px 13px;
+$base-box-indent:                  	0 0 30px 0;
+
+//---------- Product Elements
+$product-name-color:                #3a3939;
+$product-name-hover-color:          #515151;
+$price-color:						$base-body-color;
+$product-price-color:				$base-text-color;
+$product-reduced-price:				#f00;
+$product-special-price-color:		#f13340;
+$product-old-price-color:			#6f6f6f;
+
+//---------- Buttons
+$button-text-color:					$light-text-color;
+
+		//------ Buttons +/- ---
+		$button-pm-color:			#c0c0c0;
+		$button-pm-hover-color:		$base-text-color;
+
+		//------ Button Small --
+		$button-small-bg:			#6f6f6f;
+		$button-small-hover-bg:		#575757;
+
+		//-------Button exclusive-medium
+		$button-em-color:			$base-text-color;
+
+//---------- Product Listing
+$base-listing-border-color:					$base-border-color;
+$base-listing-grid-padding:					$base-box-padding;
+
+		//-------------- Grid/List vars
+		$GL-text-color:								#808080;
+		$GL-title-color:							$base-text-color;
+		$GL-icon-color:								#e1e0e0;
+		$GL-icon-color-hover:						$base-text-color;
+
+		//-------------- Pagination vars
+		$pagination-prevnext-color:					#777676;
+		$pagination-bgcolor:	               		$base-box-bg;
+		$pagination-hover-bg:						#f6f6f6;
+
+//---------- Product Info
+$top-line-color:									#C4C4C4;
+$product-image-border:								#dbdbdb;
+$scroll-button-color:								#c0c0c0;
+$list-info-bg:										#f6f6f6;
+$scroll-button-hover-color:							$base-text-color;
+$tr-even-bg:										#fdfdfd;
+
+//sub heading (h2,h3) define
+@mixin sub-heading {
+	color: $base-heading-color;
+	text-transform: uppercase;
+	font-family: $font-custom;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 20px;
+	padding: 14px 20px 17px;
+	margin: 0 0 20px;
+	position: relative;
+	border: 1px solid $base-border-color;
+	border-bottom: none;
+	background: $base-box-bg;
+}
+
+@mixin fontFace($name){
+	@font-face {
+		font-family: $name;
+		src: url("../fonts/" + $name + "/" + $name + ".eot");
+		src: url("../fonts/" + $name + "/" + $name + ".eot?#iefix")format("embedded-opentype"),
+		url("../fonts/" + $name + "/" + $name + ".woff") format("woff"),
+		url("../fonts/" + $name + "/" + $name + ".ttf") format("truetype");
+		font-style: normal;
+		font-weight: normal;
+	}
+}
+
+@function em($target, $context: $base-font-size) {
+  @if $target == 0 {
+    @return 0
+  }
+  @return $target / $context + 0em;
+}
+

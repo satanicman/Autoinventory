@@ -1,0 +1,1 @@
+Solicitud de codigo de activacion desde {email}. Dominio {url}, version del modulo {version}

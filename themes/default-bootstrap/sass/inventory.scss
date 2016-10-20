@@ -1,0 +1,12 @@
+@import "compass";
+@import "theme_variables";
+@import "sprite";
+.myac {
+    &-wrapper {
+        .tab {
+            &-content {
+                margin-top: 25px;
+            }
+        }
+    }
+}

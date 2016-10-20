@@ -1,0 +1,64 @@
+@import "compass";
+@import "theme_variables";
+@import "sprite";
+.product_list {
+    &.list {
+        .ajax_block_product  {
+            margin-bottom: 45px;
+        }
+    }
+    &.grid {
+        .ajax_block_product  {
+            .left-block,
+            .center-block {
+                float: none;
+                width: 100%;
+                padding: 0;
+            }
+            .left-block {
+                padding-bottom: 20px;
+            }
+            .center-block {
+                h5 {
+                    text-align: center;
+                }
+                .myacc-features {
+                    min-width: 100%;
+                    td {
+                        width: 50%;
+                    }
+                }
+                .button-container {
+                    @include display-flex;
+                    a {
+                        @include flex-grow(1);
+                    }
+                }
+            }
+        }
+
+    }
+    .left-block {
+        padding-left: 0;
+        img {
+            width: 100%;
+        }
+    }
+    .myacc {
+       &-features {}
+       &-feature {
+           td {
+           }
+           &-name {
+           }
+           &-value {}
+       }
+    }
+    .center-block {
+        padding-right: 0;
+        h5 {
+        }
+    }
+    .product-name {
+    }
+}

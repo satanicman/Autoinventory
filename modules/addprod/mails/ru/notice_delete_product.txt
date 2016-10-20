@@ -1,0 +1,2 @@
+{message}
+Билет №{ticket_id}, ID автора - {customer_id}

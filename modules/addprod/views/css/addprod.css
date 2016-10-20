@@ -1,0 +1,126 @@
+#addprod-user .std textarea {width: 510px;}
+#addprod-user table {width: 100%;}
+#accessories {list-style:none;}
+#accessories li {float:left;text-align:center;padding:5px;}
+table.table {
+	width: 100%;
+}
+
+.std.MultiFile-intercepted label {
+    line-height:20px;
+    width:auto;
+}
+.idTabs:after
+{
+    clear: both;
+    display: block;
+    content: '';
+}
+
+.checker
+{
+    float: left;
+    margin-right: 20px;
+}
+
+.field_info
+{
+    font-size: 12px;
+    font-style: italic;
+}
+#idTab0
+{
+    padding: 10px;
+    border: 1px solid #cecece;
+}
+
+#showPopup
+{
+    text-align: left;
+    width: 600px;
+}
+
+.hover_descr a
+{
+    color: #000000!important;
+}
+.hover_descr a:hover
+{
+    text-decoration: underline;
+}
+
+.on_moderation
+{
+    background: #e6784b;
+    color: #FFFFFF;
+    border: 1px solid #e6784b;
+    border-radius: 5px;
+    font-size: 13px;
+    text-transform: lowercase;
+    font-weight: bolder;
+    line-height: 17px;
+    padding: 0 3px;
+    display: inline-block;
+}
+
+.preview_logo img
+{
+    width: 150px!important;
+    margin-top: 15px;
+}
+
+.stage_order_info
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999998;
+}
+.order_info
+{
+    background: #FFFFFF;
+    padding: 15px;
+    position: fixed;
+    z-index: 999999;
+}
+.close_oi
+{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 18px;
+    color: #333333;
+}
+.title_oi
+{
+    font-size: 16px;
+    color: #333333;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+#idTab4
+{
+    border: 1px solid #ccc !important;
+    padding: 12px !important;
+}
+
+#module-addprod-user #center_column.grid_5
+{
+    width: 757px;
+}
+
+.row #center_column [name="submitAgree"]
+{
+    padding: 3px 8px 3px 8px;
+    border: 1px solid;
+    border-color: #8b8a8a;
+}
+.row #center_column [name="submitAgree"]:hover
+{
+    background: #575757;
+    border-color: #303030 #303030 #666666 #444444;
+}

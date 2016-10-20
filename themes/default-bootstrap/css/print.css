@@ -1,0 +1,139 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+@media only print {
+  #header .nav, #header .banner, #header .row > div {
+    display: none;
+  }
+  #header .row div#header_logo {
+    display: block;
+  }
+
+  #center_column {
+    width: 100% !important;
+  }
+
+  #left_column, #right_column {
+    display: none;
+  }
+
+  .no-print, #quantity_wanted_p > a, a.quick-view {
+    display: none !important;
+  }
+
+  div.selector, div.selector span, div.selector select {
+    background: none;
+  }
+
+  #thumbs_list li a:hover, #thumbs_list li a.shown {
+    border-color: #fff;
+  }
+
+  .product_attributes, .box-cart-bottom {
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .pb-left-column #views_block {
+    margin-top: 10px;
+    width: 278px !important;
+  }
+
+  #thumbs_list_frame, #thumbs_list {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  #thumbs_list li, #thumbs_list li:first-child {
+    margin: 4px;
+    width: 82px;
+    height: 82px;
+  }
+
+  #view_scroll_left, #view_scroll_right, .view_scroll_spacer {
+    display: none !important;
+  }
+
+  .bx-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .bx-viewport {
+    height: auto !important;
+  }
+
+  #bxslider, #bxslider1, #crossselling_list_car {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  #bxslider1 .product-box {
+    min-height: 200px;
+  }
+
+  .bx-controls-direction {
+    display: none;
+  }
+
+  #footer .row > div, #footer .row > section {
+    display: none;
+  }
+  #footer .row > div#block_contact_infos, #footer .row > section#block_contact_infos {
+    display: block;
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #515151;
+    padding-top: 20px;
+  }
+
+  .footer-container #footer h4:after {
+    display: none;
+  }
+}
+
+/*# sourceMappingURL=print.css.map */

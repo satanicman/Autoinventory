@@ -1,0 +1,5 @@
+Su producto fue comprado! 
+
+Producto: {product_name} 
+Cantidad: {product_quantity} 
+Te lo has ganado: {product_sum}

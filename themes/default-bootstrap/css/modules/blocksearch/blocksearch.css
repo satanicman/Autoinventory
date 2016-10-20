@@ -1,0 +1,123 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+#search_block_top {
+  padding-top: 50px;
+}
+#search_block_top #searchbox {
+  float: left;
+  width: 100%;
+}
+#search_block_top .btn.button-search {
+  background: #1b3055;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  color: #fff;
+  width: 50px;
+  text-align: center;
+  padding: 10px 0 11px 0;
+}
+#search_block_top .btn.button-search span {
+  display: none;
+}
+#search_block_top .btn.button-search:before {
+  content: "\f002";
+  display: block;
+  font-family: "FontAwesome";
+  font-size: 17px;
+  width: 100%;
+  text-align: center;
+}
+#search_block_top .btn.button-search:hover {
+  color: #6f6f6f;
+}
+#search_block_top #search_query_top {
+  display: inline;
+  padding: 13px 60px 13px 13px;
+  height: 45px;
+  background: #fbfbfb;
+  margin-right: 1px;
+}
+
+.ac_results {
+  border: 1px solid #d6d4d4;
+  width: 271px;
+  margin-top: -1px;
+}
+.ac_results li {
+  padding: 0 10px;
+  font-weight: normal;
+  color: #686666;
+  font-size: 13px;
+  line-height: 22px;
+}
+.ac_results li:hover, .ac_results li.ac_over {
+  background: #fbfbfb;
+}
+
+form#searchbox {
+  position: relative;
+}
+form#searchbox label {
+  color: #333;
+}
+form#searchbox input#search_query_block {
+  margin-right: 10px;
+  max-width: 222px;
+  margin-bottom: 10px;
+  display: inline-block;
+  float: left;
+}
+form#searchbox .button.button-small {
+  float: left;
+}
+form#searchbox .button.button-small i {
+  margin-right: 0;
+}
+
+/*# sourceMappingURL=blocksearch.css.map */

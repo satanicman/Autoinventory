@@ -1,0 +1,2 @@
+Withdrawal of rewards ordered author ID #{customer_id}, amount - {summ} 
+Comment: {description}

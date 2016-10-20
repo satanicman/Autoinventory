@@ -1,0 +1,30 @@
+@import "compass";
+@import "theme_variables";
+.shop-phone {
+	i {
+	}
+	strong {
+	}
+	&.is_logged {
+	}
+}
+#contact-link {
+	a {
+		&:hover, &.active {
+		}
+	}
+	&.is_logged {
+	}
+}
+#contact_block {
+	.label {
+	}
+	.block_content {
+	}
+	p {
+      &.tel {
+		i {
+		}
+      }
+	}
+}

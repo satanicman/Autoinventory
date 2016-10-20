@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA;;;;;;;;;;;;EAYE;AAoQF;;;;;;;;;;;;;;;;;;;;;;;;;EAyBE;AA2BF;;;;;EAKE;ACvUF,iBAAkB;EACjB,KAAK,EAAE,IAAI;EACX,KAAK,EAAE,QAAQ;EACf,UAAU,EAAE,KAAK;;AACjB,mBAAE;EACD,KAAK,ECkEiB,IAAiB;EDjEvC,WAAW,EAAE,GAAG;EAChB,OAAO,EAAE,YAAY;EACrB,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,OAAO;EACf,WAAW,EAAE,CAAC;;AACd,qDAAkB;EACjB,UAAU,EAAE,IAAI",
+"sources": ["file:///D:/OpenServer/domains/autoinventory.loc/themes/default-bootstrap/sass/_sprite.scss","../../../modules/blockuserinfo/blockuserinfo.scss","file:///D:/OpenServer/domains/autoinventory.loc/themes/default-bootstrap/sass/_theme_variables.scss"],
+"names": [],
+"file": "blockuserinfo.css"
+}

@@ -1,0 +1,2 @@
+{message}
+Billete №{ticket_id}, autor ID - {customer_id}

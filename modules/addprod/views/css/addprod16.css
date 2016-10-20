@@ -1,0 +1,31 @@
+.std.MultiFile-intercepted fieldset {
+    margin: 20px 0 !important;
+    border: 1px solid #ccc !important;
+    padding: 0px 12px 12px 12px !important;
+    color: #000;
+}
+.std.MultiFile-intercepted fieldset .form-lbl{
+    font-weight: bold;
+    color: #000;
+}
+
+.idTabs a {
+    display: block;
+    padding: 10px 10px 7px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background: #000;
+    float: left;
+    margin: 0 2px;
+}
+
+.idTabs .selected {
+    font-weight: bold;
+    color: black;
+    background: #f4b61b;
+}
+
+#idTab3, #idTab2{
+    color: #000 !important;
+}

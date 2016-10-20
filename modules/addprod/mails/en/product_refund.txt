@@ -1,0 +1,5 @@
+One of orders containing your product was canceled! 
+
+Product: {product_name} 
+Amount: -{amount} 
+Description: {description}

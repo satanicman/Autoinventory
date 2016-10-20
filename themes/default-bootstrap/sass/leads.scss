@@ -1,0 +1,14 @@
+@import "compass";
+@import "theme_variables";
+
+.leads {
+    &-lead {
+        margin-bottom: 45px;
+        .left-block {
+            padding-left: 0;
+        }
+        .center-block {
+            padding-right: 0;
+        }
+    }
+}

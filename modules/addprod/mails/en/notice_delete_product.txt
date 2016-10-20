@@ -1,0 +1,2 @@
+{message}
+Ticket №{ticket_id}, author ID - {customer_id}

@@ -1,0 +1,275 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.myac-wrapper {
+  margin: 0 -30px;
+  display: -webkit-flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.myac-wrapper #description {
+  visibility: hidden;
+  width: 100%;
+  height: 300px;
+}
+.myac-wrapper .label {
+  padding-left: 0;
+  padding-right: 0;
+}
+.myac-wrapper .tab-content {
+  padding: 0 0 60px;
+  margin: 55px 100px 0;
+  max-width: 1215px;
+  border-bottom: 1px solid rgba(15, 34, 71, 0.15);
+}
+.myac-wrapper .nav-tabs {
+  margin: 0 -15px;
+  padding: 0 70px 0 115px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.myac-wrapper .nav-tabs > li {
+  border-right: 2px solid #dbdee4;
+  margin: 0;
+}
+.myac-wrapper .nav-tabs > li.button-wrap {
+  text-align: right;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+.myac-wrapper .nav-tabs > li.button-wrap a {
+  padding-top: 11px;
+  padding-bottom: 11px;
+  margin-top: -10px;
+  color: #fff;
+}
+.myac-wrapper .nav-tabs > li.last, .myac-wrapper .nav-tabs > li:last-of-type {
+  border-right: none;
+}
+.myac-wrapper .nav-tabs > li a {
+  border: none;
+  display: inline-block;
+  font-family: "GothamProMedium";
+  font-size: 1.125em;
+  font-weight: 500;
+  line-height: 1;
+  padding: 7px 30px;
+}
+.myac-wrapper .nav-tabs > li.active {
+  border: none;
+}
+.myac-wrapper .nav-tabs > li.active a {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+.myac-wrapper .nav-tabs > li.active a:before {
+  border-width: 7px 11px;
+  margin-left: -11px;
+}
+.myac-wrapper .dashboard {
+  background-color: #3c91da;
+}
+.myac-wrapper .dashboard-title {
+  color: #fff;
+  font-size: 2.125em;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+}
+.myac-wrapper .dashboard .myac-link, .myac-wrapper .dashboard .myac-link:hover {
+  color: #fff;
+}
+.myac-wrapper .dashboard .myac-link:hover, .myac-wrapper .dashboard .myac-link.selected {
+  color: #1b3055;
+  background: #fff;
+}
+.myac-links {
+  margin: 30px -15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.myac-link {
+  display: block;
+  font-family: "GothamProMedium";
+  font-size: 1.125em;
+  font-weight: 500;
+  line-height: 1;
+  padding: 20px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.myac-link-num {
+  font-family: "GothamProLight";
+}
+.myac-column {
+  padding-top: 45px;
+  padding-bottom: 165px;
+}
+
+#columns {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.vin {
+  display: -webkit-flex;
+  display: flex;
+}
+.vin input {
+  margin-right: 20px;
+}
+.vin-submit {
+  padding: 10px 30px;
+}
+.vin-submit#myAccountAddProduct {
+  margin: 40px 100px;
+}
+
+#features input[type='checkbox'] {
+  display: none;
+}
+#features input[type='checkbox']:checked ~ .label .checkbox:before {
+  display: inline-block;
+  width: 12px;
+  height: 8px;
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -7px 0 0 -6px;
+  border-style: solid;
+  border-color: #3c91da;
+  border-width: 0 0 2px 2px;
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+#features span {
+  display: inline-block;
+  vertical-align: middle;
+}
+#features .checkbox {
+  cursor: pointer;
+  min-height: 0;
+  margin: 0 4px 0 0;
+  overflow: hidden;
+  position: relative;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #c3c8d1;
+}
+
+#images .jFiler-input-dragDrop {
+  width: 100%;
+}
+
+.auto-table td {
+  padding: 0 20px 10px 0;
+  font-weight: 500;
+  line-height: 1;
+  font-size: 0.875em;
+  color: rgba(15, 34, 71, 0.85);
+  vertical-align: top;
+}
+.auto-table-name {
+  font-family: "GothamProMedium";
+}
+
+.title-wrap {
+  font-size: 1em;
+  margin: 0 0 20px;
+  padding: 0;
+}
+.title-wrap > * {
+  color: #3c91da;
+  font-size: 1.375em;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.required .label span {
+  color: #e64e18;
+  font-size: 1em;
+}
+
+.label {
+  color: rgba(15, 34, 71, 0.8);
+  font-family: "GothamProRegular", "Open Sans", sans-serif;
+  font-size: 1.125em;
+  font-weight: 400;
+  line-height: 1;
+  padding: 0 0 10px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.btn-update {
+  width: 184px;
+}
+
+#preloader_list {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+#preloader_list img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -32px;
+  margin-top: -32px;
+}
+
+/*# sourceMappingURL=my-account.css.map */

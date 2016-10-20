@@ -1,0 +1,138 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+/* Block newsletter */
+#columns #newsletter_block_left .form-group {
+  margin-bottom: 0;
+}
+#columns #newsletter_block_left .form-group .form-control {
+  max-width: 222px;
+  display: inline-block;
+  margin-right: 6px;
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  #columns #newsletter_block_left .form-group .form-control {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+}
+#columns #newsletter_block_left .success_inline, #columns #newsletter_block_left .warning_inline {
+  text-align: left;
+  padding: 1px 0 0 0;
+  margin-bottom: -19px;
+}
+#columns #newsletter_block_left .success_inline {
+  color: #418B19;
+}
+#columns #newsletter_block_left .warning_inline {
+  color: #f13340;
+}
+
+/* Block newsletter footer */
+#footer #newsletter_block_left {
+  overflow: hidden;
+  padding-left: 245px;
+}
+#footer #newsletter_block_left h2 {
+  font-size: 1.125em;
+  line-height: 1;
+  margin: 0 0 20px;
+}
+#footer #newsletter_block_left h4 {
+  font-size: 0.875em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+#footer #newsletter_block_left .block_content {
+  overflow: hidden;
+}
+#footer #newsletter_block_left .form-group {
+  margin-bottom: 0;
+}
+#footer #newsletter_block_left .form-group .form-control {
+  width: 258px;
+  height: 32px;
+  background-color: white;
+  border: none;
+  padding: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#footer #newsletter_block_left .form-group .button-small {
+  vertical-align: middle;
+  border: none;
+  background: none;
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  font-size: 0.813em;
+  font-weight: 400;
+  line-height: 1;
+  width: 124px;
+  height: 32px;
+  background-color: #32cc70;
+}
+#footer #newsletter_block_left .warning_inline {
+  display: block;
+  color: #f13340;
+  font-size: 13px;
+  line-height: 26px;
+  clear: both;
+}
+@media (min-width: 1200px) {
+  #footer #newsletter_block_left .warning_inline {
+    display: inline-block;
+    position: relative;
+    top: -35px;
+    margin-bottom: -35px;
+    left: 15px;
+    clear: none;
+  }
+}
+#footer #newsletter_block_left .newsletter-input {
+  max-width: 300px !important;
+}
+
+/*# sourceMappingURL=blocknewsletter.css.map */

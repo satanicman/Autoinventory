@@ -1,0 +1,315 @@
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.manufacturer-table span, .manufacturer-table a, .manufacturer-table-label {
+  display: inline-block;
+  padding-right: 25px !important;
+}
+
+.manufacturer-tab {
+  margin: 0;
+}
+.manufacturer-top {
+  display: -webkit-flex;
+  display: flex;
+}
+.manufacturer-top-img {
+  -webkit-flex-basis: 270px;
+  flex-basis: 270px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+.manufacturer-top-description {
+  -webkit-flex-basis: 690px;
+  flex-basis: 690px;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  padding: 0 30px;
+}
+.manufacturer-top-hours {
+  padding-top: 30px;
+}
+.manufacturer-top-hours td {
+  vertical-align: top;
+  padding: 10px 0;
+  color: #0f2247;
+  font-size: 0.875em;
+  font-weight: 400;
+}
+.manufacturer-top-hours td:first-of-type {
+  padding-right: 30px;
+}
+.manufacturer-table {
+  color: rgba(15, 34, 71, 0.85);
+  font-size: 0.875em;
+  font-weight: 400;
+  line-height: 1.375em;
+}
+.manufacturer-table td {
+  padding: 0 0 35px;
+  vertical-align: top;
+}
+.manufacturer-table p {
+  margin: 0;
+}
+.manufacturer-table a {
+  color: #3c91da;
+}
+.manufacturer-table-label {
+  color: #4e576d;
+  font-weight: 500;
+}
+.manufacturer-nav {
+  margin-bottom: 80px;
+}
+.manufacturer-contacts {
+  color: #3c91da;
+  font-size: 0.875em;
+  padding: 15px 0 25px;
+  margin: 0;
+}
+.manufacturer-contacts a {
+  color: inherit;
+}
+.manufacturer-contacts-phone {
+  padding-left: 15px;
+  display: inline-block;
+}
+
+.filter-wrap {
+  border-style: solid;
+  border-color: rgba(15, 34, 71, 0.15);
+  border-width: 1px 0;
+  padding: 20px 0;
+}
+.filter-form {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.filter-block {
+  padding: 0 30px;
+}
+.filter-block ul {
+  margin: 0;
+}
+.filter-block.select {
+  -webkit-flex-basis: 210px;
+  flex-basis: 210px;
+}
+.filter-block.select:first-of-type {
+  padding: 0;
+  -webkit-flex-basis: 150px;
+  flex-basis: 150px;
+}
+.filter-block.slider {
+  -webkit-flex-basis: 260px;
+  flex-basis: 260px;
+}
+.filter-header {
+  color: rgba(15, 34, 71, 0.85);
+  font-size: 1em;
+  font-weight: 400;
+  line-height: 1em;
+  margin-bottom: 15px;
+}
+.filter-header-value {
+  font-size: 0.875em;
+  line-height: 1em;
+  font-weight: 500;
+  display: inline-block;
+  padding-left: 20px;
+}
+.filter-left-wrap .header {
+  padding-bottom: 20px;
+}
+.filter-left-header {
+  padding: 10px 20px 10px 0;
+  font-weight: 500;
+  line-height: 1;
+  font-size: 0.875em;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+}
+.filter-left-header .icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  font-size: 0.857em;
+  margin-top: -6px;
+}
+.filter-left-button {
+  padding: 12px 32px;
+  font-size: 1.125em;
+  font-weight: 400;
+}
+.filter-left-button-wrap {
+  padding: 25px 0;
+  border-style: solid;
+  border-color: rgba(15, 34, 71, 0.15);
+  border-width: 1px 0 0;
+}
+.filter-left-block-line {
+  display: block;
+  padding: 7px 0;
+  margin: 0;
+  font-size: 0.875em;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.filter-left-block-line span {
+  font-family: "GothamProRegular", "Open Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  padding-left: 7px;
+}
+.filter-left-block-line > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+.filter-left-block:nth-of-type(3n) {
+  border-style: solid;
+  border-color: rgba(15, 34, 71, 0.15);
+  border-width: 0 0 1px;
+}
+
+.ui-widget-content {
+  background: rgba(15, 34, 71, 0.3);
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  border: none;
+}
+.ui-widget-header {
+  background: #3c91da;
+}
+.ui-slider-horizontal {
+  height: 4px;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid #c3c8d1;
+  top: 50%;
+  margin-top: -8px;
+  margin-left: -8px;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  outline: none;
+}
+
+.lincoln-navigator .header {
+  padding-bottom: 15px;
+}
+.lincoln-navigator-text {
+  margin: 0 0 15px;
+  font-weight: 500;
+  font-size: 0.875em;
+  line-height: 1;
+}
+.lincoln-navigator-link {
+  position: relative;
+  display: inline-block;
+  padding-right: 15px;
+}
+.lincoln-navigator-link:before {
+  border-color: transparent;
+  border-top-color: #0f2247;
+  border-style: solid;
+  content: '';
+  display: inline-block;
+  border-width: 6px 5px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -3px;
+}
+
+.sort select {
+  padding: 10px 25px 10px 40px;
+  background: url(../img/icon/select.png) right 10px top 50% no-repeat, url(../img/icon/sort.png) left 10px center no-repeat;
+  border: none;
+  max-width: 130px;
+  color: rgba(15, 34, 71, 0.85);
+  font-size: 1em;
+  outline: none;
+}
+.sort-wrap {
+  padding: 10px 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+  border-style: solid;
+  border-color: rgba(15, 34, 71, 0.15);
+  border-width: 0 0 1px;
+}
+.sort-block {
+  padding: 0 30px;
+}
+.sort-block:first-of-type {
+  padding-left: 0;
+}
+.sort-block .btn {
+  padding: 12px 20px;
+}
+
+.sub-left-column {
+  padding-left: 0;
+}
+.sub-center-column {
+  padding-right: 0;
+}
+.sub-column-container {
+  padding: 50px 0 35px;
+}
+
+/*# sourceMappingURL=manufacturer.css.map */

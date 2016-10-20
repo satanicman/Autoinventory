@@ -1,0 +1,137 @@
+@import "compass";
+@import "theme_variables";
+/**********************************************************
+				Authentication Styles
+**********************************************************/
+//#account-creation_form .id_state,
+//#account-creation_form .dni,
+//#account-creation_form .postcode {
+//	display: none;
+//}
+
+#create-account_form {
+	min-height: 297px;
+	p {
+		margin-bottom: 8px;
+	}
+	.form-group {
+		margin: 0 0 20px 0;
+	}
+}
+
+#login_form {
+	min-height: 297px;
+	.form-group {
+		margin: 0 0 3px 0;
+		&.lost_password {
+			margin: 14px 0 15px 0;
+			a {
+				text-decoration: underline;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+#login_form, #create-account_form {
+	.form-control {
+		max-width: 271px;
+	}
+}
+
+.form-group {
+	margin-bottom: 30px;
+}
+
+.label {
+	color: rgba($base-body-color, .8);
+	font-family: $font-custom;
+	font-size: $myac-font;
+	font-weight: 400;
+	line-height: 1;
+	padding: 0 0 10px;
+}
+
+#columns {
+	padding: 0 0 80px;
+}
+$registration-padding : 240px;
+.registration {
+	&-wrap {
+		padding: 0 $registration-padding;
+	}
+	&-content {
+		background-color: #fff;
+		@include box-shadow(0 5px 35px rgba(27, 48, 85, 0.39));
+		padding: 60px;
+		&-top {
+			.myac-title {
+				padding: 0 15px 10px;
+				font-size: $font-title-sub;
+				.num-number {
+					font-size: em(19px, 24px);
+					width: 30px;
+					height: 30px;
+				}
+				&:first-of-type {
+					padding-left: 0;
+				}
+				&:last-of-type {
+					padding-right: 0;
+				}
+				&.active {
+					border-bottom: 6px solid #1b3055;
+				}
+			}
+		}
+		&-footer {
+			margin-top: 60px;
+			border-top: 1px solid;
+			border-color: rgba($registration-bg-dark-blue, .15);
+			padding-top: 30px;
+			.btn {
+				padding: 17px 38px;
+				margin-bottom: 25px;
+			}
+			&-text {
+				font-size: $font-small;
+				font-weight: 400;
+				line-height: 20px;
+				margin: 0;
+			}
+		}
+	}
+	&-header {
+		&-wrap {
+			background-color: $bg-dark-blue;
+			margin: 0 (0-$registration-padding) -175px;
+			padding: 75px $registration-padding 220px;
+			color: #fff;
+			font-weight: 400;
+			text-align: center;
+		}
+		&-title {
+			margin: 0 0 20px;
+			font-size: em(60px);
+			font-family: $font-family-medium;
+		}
+		&-text {
+			margin: 0;
+			font-size: $font-title-small;
+			line-height: 1.1;
+		}
+	}
+}
+
+textarea.form-control {
+	width: 790px;
+	height: 120px;
+	border: 1px solid $myaccount-grey;
+
+	color: rgba($base-body-color, .85);
+	font-size: $font-small;
+	font-weight: 400;
+	line-height: em(22px, 14px);
+}

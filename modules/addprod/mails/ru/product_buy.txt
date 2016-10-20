@@ -1,0 +1,1 @@
+Ваш товар был куплен. Товар: {product_name} Количество: {product_quantity} Вы заработали: {product_sum}

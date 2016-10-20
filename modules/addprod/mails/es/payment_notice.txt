@@ -1,0 +1,2 @@
+Retiro de recompensas ordeno autor ID #{customer_id}, suma - {summ}
+Comentario: {description}
