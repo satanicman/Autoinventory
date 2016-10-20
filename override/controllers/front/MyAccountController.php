@@ -376,7 +376,16 @@ class MyAccountController extends MyAccountControllerCore
                 }
             }
         }
-        // custom fields #END
+
+        if (!Validate::isInt($year = Tools::getValue('year'))
+            || empty($year)
+        )
+            $this->errors[] = Tools::displayError('Year is not valid');
+
+        if (!Validate::isInt($miles = Tools::getValue('miles'))
+            || empty($miles)
+        )
+            $this->errors[] = Tools::displayError('Mileage is not valid');
 
         if (!Validate::isCatalogName($category = Tools::getValue('categories'))
             || empty($category)
@@ -409,6 +418,8 @@ class MyAccountController extends MyAccountControllerCore
 
             $product->description[$default_lang] = $description;
             $product->price = (float)Tools::getValue('price');
+            $product->year = $year;
+            $product->miles = $miles;
 
             $product->quantity = 1;
             $product->minimum_quantity = 1;

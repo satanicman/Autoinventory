@@ -8,7 +8,6 @@
 {/if}
 <ul class="nav nav-tabs">
     <li><a data-toggle="tab" href="#information" class="myac-link">{l s="Information"}</a></li>
-    {*<li><a data-toggle="tab" href="#price" class="myac-link">{l s="Price"}</a></li>*}
     {if isset($available_features) && available_features}
     <li><a data-toggle="tab" href="#features" class="myac-link">{l s="Features"}</a></li>
     {/if}
@@ -113,20 +112,11 @@
             </div>
             <div class="form-group required half odd">
                 <label for="year" class="label">{l s="Year"}<span>*</span></label>
-                <input type="text" id="year" class="api_fields form-control" name="features[18][value]"{if isset($product->features[18])
-                && $product->features[18]}
-                    value = "{$product->features[18]['value']}"
+                <input type="text" id="year" class="api_fields form-control" name="year"{if isset($product->year)
+                && $product->year}
+                    value = "{$product->year}"
                         {/if}>
-                <input type="hidden" name="features[18][required]" value="{l s="Year"}">
             </div>
-            {*<div class="form-group required half odd">*}
-                {*<label for="miles" class="label">{l s="Miles"}<span>*</span></label>*}
-                {*<input type="text" id="miles" class="form-control" name="features[17][value]"{if isset($product->features[17])*}
-                {*&& $product->features[17]}*}
-                    {*value = "{$product->features[17]['value']}"*}
-                        {*{/if}>*}
-                {*<input type="hidden" name="features[17][required]" value="{l s="Miles"}">*}
-            {*</div>*}
             <div class="form-group required half even">
                 <label for="price" class="label">{l s="Price"}<span>*</span></label>
                 <input type="text" id="price" class="form-control" name="price" value="{if isset($product->price) && $product->price}{$product->price}{else}0{/if}">
@@ -149,28 +139,11 @@
             </div>
             <div class="form-group required half odd">
                 <label for="mileage" class="label">{l s="Mileage"}<span>*</span></label>
-                <input type="text" id="mileage" name="features[30][value]" class="form-control"{if isset($product->features[30])
-                && $product->features[30]}
-                    value = "{$product->features[30]['value']}"
+                <input type="text" id="mileage" name="miles" class="form-control"{if isset($product->miles)
+                && $product->miles}
+                    value = "{$product->miles}"
                         {/if}>
-                <input type="hidden" name="features[30][required]" value="{l s="Mileage"}">
             </div>
-            {*<div class="form-group half even">*}
-                {*<label for="stock" class="label">{l s="Expries"}</label>*}
-                {*<input type="text" id="expries" name="features[27][value]" class="form-control"{if isset($product->features[27])*}
-                {*&& $product->features[27]}*}
-                    {*value = "{$product->features[27]['value']}"*}
-                        {*{/if}>*}
-                {*<input type="hidden" name="features[27][required]" value="0">*}
-            {*</div>*}
-            {*<div class="form-group half odd">*}
-                {*<label for="mileage" class="label">{l s="Listing type"}</label>*}
-                {*<input type="text" id="listing_type" name="features[26][value]" class="form-control"{if isset($product->features[26])*}
-                {*&& $product->features[26]}*}
-                    {*value = "{$product->features[26]['value']}"*}
-                        {*{/if}>*}
-                {*<input type="hidden" name="features[26][required]" value="0">*}
-            {*</div>*}
             <div class="form-group half even">
                 <label for="stock" class="label">{l s="Stock #"}</label>
                 <input type="text" id="stock" name="features[12][value]" class="form-control"{if isset($product->features[12])
@@ -189,10 +162,6 @@
                 </textarea>
             </div>
         </div>
-        {*<div id="price" class="tab-pane fade">*}
-        {*<h3>price</h3>*}
-        {*<p>Some content.</p>*}
-        {*</div>*}
         <div id="features" class="tab-pane fade clearfix">
             <h2 class="myac-title">{l s="Car features"}</h2>
             {foreach from=$available_features item=feature name=feature}
