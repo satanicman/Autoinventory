@@ -43,10 +43,11 @@ class IndexController extends IndexControllerCore
     protected $id_feature_distance= 17;
 
     protected function getUrlFeatureValue($data){
+        if (!$anchor = Configuration::get('PS_ATTRIBUTE_ANCHOR_SEPARATOR'))
+            $anchor = '-';
+
         foreach ($data as &$part){
-            $sql = "SELECT url_name FROM "._DB_PREFIX_."layered_indexable_feature_value_lang_value 
-            WHERE id_feature_value={$part['id_feature_value']} AND id_lang = {$this->context->language->id}";
-            $part['url_name'] = Db::getInstance()->getValue($sql);
+            $part['url_name'] = str_replace($anchor, '_', Tools::link_rewrite($part['value']));
         }
         return $data;
     }
