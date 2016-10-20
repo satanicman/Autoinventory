@@ -148,7 +148,7 @@
                             <a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}" data-fancybox-group="other-views" class="fancybox{if $image.id_image == $cover.id_image} shown{/if}"{/if}
                                     title="{$imageTitle}">
                                 <img class="img-responsive" id="thumb_{$image.id_image}"
-                                     src="{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}"
+                                     src="{$link->getImageLink($product->link_rewrite, $imageIds)|escape:'html':'UTF-8'}"
                                      alt="{$imageTitle}"
                                      title="{$imageTitle}" width="100%"
                                      itemprop="image"/>
@@ -170,7 +170,7 @@
                                                 <a{if $jqZoomEnabled && $have_image && !$content_only} href="javascript:void(0);" rel="{literal}{{/literal}gallery: 'gal1', smallimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}',largeimage: '{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}'{literal}}{/literal}"{else} href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox_default')|escape:'html':'UTF-8'}" data-fancybox-group="other-views" class="fancybox{if $image.id_image == $cover.id_image} shown{/if}"{/if}
                                                         title="{$imageTitle}">
                                                     <img class="img-responsive" id="thumb_{$image.id_image}"
-                                                         src="{$link->getImageLink($product->link_rewrite, $imageIds, 'large_default')|escape:'html':'UTF-8'}"
+                                                         src="{$link->getImageLink($product->link_rewrite, $imageIds)|escape:'html':'UTF-8'}"
                                                          alt="{$imageTitle}"
                                                          title="{$imageTitle}"{if isset($cartSize)} height="{$cartSize.height}" width="{$cartSize.width}"{/if}
                                                          itemprop="image"/>
@@ -192,9 +192,9 @@
             </div> <!-- end pb-left-column -->
             <div class="pb-right-column col-xs-12 col-sm-3 col-md-3">
                 <ul class="top_buttons product">
-                    {if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}
-                        {$HOOK_PRODUCT_ACTIONS}
-                    {/if}
+                    {*{if isset($HOOK_PRODUCT_ACTIONS) && $HOOK_PRODUCT_ACTIONS}*}
+                        {*{$HOOK_PRODUCT_ACTIONS}*}
+                    {*{/if}*}
                     <li>
                         <a href="javascript:print();" class="print">
                             <i class="icon__print"></i>
@@ -203,11 +203,21 @@
                     </li>
                 </ul>
                 <div class="manufacturer-block">
-                    <h3 class="manufacturer-block-title product-title_medium">{l s="Manhattan Motorcars"}</h3>
-                    <p>{l s="Ext 132 1538 325 (866)1"}</p>
-                    <p>{l s="Elevent Ave 270, New York, NY 10001"}</p>
-                    <p><a href="#" class="manufacturer-block-email">{l s="manhattanmotorcars.com"}</a></p>
-                    <p class="manufacturer-block-detail"><a href="#">{l s="See dealers Inventory"}</a></p>
+                    {if isset($customer) && $customer}
+                        <h3 class="manufacturer-block-title product-title_medium">{$customer->business_name}</h3>
+                        {if $customer->phones}
+                            <p>
+                            {foreach from=$customer->phones item=phone}
+                                <span>{$phone.type}-{if $phone.ext}{$phone.ext} {/if}{$phone.phone}</span>
+                            {/foreach}
+                            </p>
+                        {/if}
+                        <p>{$customer->address}</p>
+                        {if $customer->site}
+                            <p><a href="{$customer->site}" class="manufacturer-block-email">{$customer->site}</a></p>
+                        {/if}
+                        <p class="manufacturer-block-detail"><a href="{$customer->link}">{l s="See dealers Inventory"}</a></p>
+                    {/if}
                 </div>
                 <form method="POST" action="{$link->getPageLink('ajax', true)|escape:'html':'UTF-8'}" class="product-question-block" id="product-question-block">
                     <h3 class="product-question-block-title product-title_medium">{l s="Ask a quastion"}</h3>
