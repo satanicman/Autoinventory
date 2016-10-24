@@ -190,35 +190,6 @@
   } //-top
 } //filter
 
-.ui{
-  &-widget{
-    &-content {
-      background: rgba($base-body-color,.3);
-      @include border-radius(2px);
-      border: none;
-    }
-    &-header {
-      background: $bg-dark-blue;
-    }
-  }
-  &-slider-horizontal {
-    height: 4px;
-  }
-  &-state-default,
-  &-widget-content &-state-default,
-  &-widget-header &-state-default {
-    width: 16px;
-    height: 16px;
-    background: $light-background;
-    border: 2px solid $bg-dark-grey;
-    top: 50%;
-    margin-top: -8px;
-    margin-left: -8px;
-    @include border-radius(50%);
-    outline: none;
-  }
-}
-
 .lincoln-navigator {
   .header {
     padding-bottom: 15px;

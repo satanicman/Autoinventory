@@ -62,6 +62,8 @@ class IndexController extends IndexControllerCore
     {
         parent::initContent();
         $this->addCSS(_THEME_CSS_DIR_.'index.css');
+        $this->context->controller->addJQueryUI('ui.slider');
+        $this->context->controller->addCSS(_PS_CSS_DIR_.'jquery-ui-1.8.10.custom.css');
         
         $make_feature_url = $this->getUrlFeature($this->id_feature_make);
         $makes = FeatureValue::getFeatureValuesWithLang($this->context->language->id,$this->id_feature_make);
@@ -87,7 +89,7 @@ class IndexController extends IndexControllerCore
         $zip = FeatureValue::getFeatureValuesWithLang($this->context->language->id,$this->id_feature_zip);
         $zip = $this->getUrlFeatureValue($zip);
 
-//        $distance_url = $this->getUrlFeature($this->id_feature_distance);
+        $distance_url = $this->getUrlFeature($this->id_feature_distance);
 //        $distance = FeatureValue::getFeatureValuesWithLang($this->context->language->id,$this->id_feature_distance);
 //        $distance = $this->getUrlFeatureValue($distance);
         $distance = array();
@@ -95,11 +97,33 @@ class IndexController extends IndexControllerCore
         foreach ($result as $row)
             $distance[] = $row['miles'];
         $distance_max = Db::getInstance()->getValue("SELECT MAX(`miles`) FROM "._DB_PREFIX_."product");
+        // category
+        $category = new Category(Configuration::get('PS_WRAP_CATEGORY'), $this->context->language->id);
+        $products = $category->getProducts($this->context->language->id, false, false, null, null, false, true, false, 1, true, null, 0, true);
+
+        $price = array(
+            'max' => 0,
+            'min' => null,
+        );
+
+        foreach ($products as $product) {
+            if(isset($product['price'])) {
+                if(is_null($price['min'])) {
+                    $price['min'] = $product['price'];
+                } elseif($price['min'] > $product['price']) {
+                    $price['min'] = $product['price'];
+                }
+
+                if($product['price'] > $price['max'])
+                    $price['max'] = $product['price'];
+            }
+        }
      
 
 
 
         $this->context->smarty->assign(array(
+            'prices' => $price,
             'layered_category_url' =>$this->context->link->getCategoryLink($this->id_category_layered),
             'make_feature_url' => $make_feature_url,
             'model_feature_url' => $model_feature_url,
@@ -107,6 +131,7 @@ class IndexController extends IndexControllerCore
             'MonthlyPayment_url' => $MonthlyPayment_url,
             'MonthsRemaining_url' => $MonthsRemaining_url,
             'zip_url' => $zip_url,
+            'distance_url' => $distance_url,
             'distance_max' => $distance_max,
             'MonthlyPayment' => $MonthlyPayment,
             'MonthsRemaining' => $MonthsRemaining,

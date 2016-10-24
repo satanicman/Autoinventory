@@ -148,7 +148,7 @@ param_product_url = '';
 								</p>
 								{*<label for="{$filter.type}">{l s='Range:' mod='blocklayered'}</label>*}
 								<div class="layered_slider_container">
-									<div class="layered_slider" id="layered-top_{$filter.type}_slider"></div>
+									<div class="layered_slider" id="layered-top_{$filter.type}_slider" data-type="{$filter.type}" data-format="{$filter.format}" data-unit="{if $filter.format < 5}{$currency->sign}{/if}"></div>
 								</div>
 								<script type="text/javascript">
 								{literal}

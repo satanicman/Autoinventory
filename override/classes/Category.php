@@ -20,7 +20,7 @@ class Category extends CategoryCore {
         return Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue($query);
     }
 
-    public function getProducts($id_lang, $p, $n, $order_by = null, $order_way = null, $get_total = false, $active = true, $random = false, $random_number_products = 1, $check_access = true, Context $context = null, $status = 0)
+    public function getProducts($id_lang, $p, $n, $order_by = null, $order_way = null, $get_total = false, $active = true, $random = false, $random_number_products = 1, $check_access = true, Context $context = null, $status = 0, $all = false)
     {
         if (!$context) {
             $context = Context::getContext();
@@ -111,6 +111,8 @@ class Category extends CategoryCore {
 
         if ($random === true) {
             $sql .= ' ORDER BY RAND() LIMIT '.(int)$random_number_products;
+        } elseif($all === true) {
+            $sql .= ' ORDER BY product_shop.price DESC';
         } else {
             $sql .= ' ORDER BY '.(!empty($order_by_prefix) ? $order_by_prefix.'.' : '').'`'.bqSQL($order_by).'` '.pSQL($order_way).'
 			LIMIT '.(((int)$p - 1) * (int)$n).','.(int)$n;

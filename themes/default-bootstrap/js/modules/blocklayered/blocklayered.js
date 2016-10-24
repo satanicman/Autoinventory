@@ -209,12 +209,11 @@ function initFilters()
 
 			if (typeof filter.slider !== 'undefined' && parseInt(filter.filter_type) == 0)
 			{
-				console.log(filter);
 				var filterRange = parseInt(filter.max)-parseInt(filter.min);
 				// if(filter.type == 'miles'){
 				// 	var step = 1;
 				// }else
-					var step = filterRange / 100;
+					var step = Math.ceil(filterRange / 100);
 				if(filter.type == "id_feature") {
 					var values_slider = [filter.values[0], filter.values[1]];
 					// var values_slider = [filter.values_slider[0], filter.values_slider[1]];
@@ -252,7 +251,7 @@ function initFilters()
 							to = ui.values[1] + $(event.target).data('unit');
 						}
 
-						$('#layered_' + $(event.target).data('type') + '_range').html(from + ' - ' + to);
+						$('#layered-top_' + $(event.target).data('type') + '_range').html(from + ' - ' + to);
 					},
 					stop: function () {
 						reloadContent(true);
@@ -296,6 +295,7 @@ function hideFilterValueAction(it)
 
 function addSlider(type, data, unit, format)
 {
+    console.log(data);
 	sliderList.push({
 		type: type,
 		data: data,
@@ -347,7 +347,7 @@ function initSlidersTop()
 				to = formatCurrency($('#layered-top_'+slider['type']+'_slider').slider('values', 1), slider['format'], slider['unit']);
 				break;
 			case 5:
-				from =  $('#layered-top_'+slider['type']+'_slider').slider('values', 0)+slider['unit']
+				from =  $('#layered-top_'+slider['type']+'_slider').slider('values', 0)+slider['unit'];
 				to = $('#layered-top_'+slider['type']+'_slider').slider('values', 1)+slider['unit'];
 				break;
 		}
