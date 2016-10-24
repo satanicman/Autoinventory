@@ -39,10 +39,10 @@
 	</ul>
 	<div class="tab-content">
 		<div id="buy" class="tab-pane fade in active">
-			{include file="$tpl_dir./search-form.tpl" }
+			{include file="$tpl_dir./search-form.tpl" type='buy'}
 		</div>
 		<div id="lease" class="tab-pane fade">
-			{include file="$tpl_dir./search-form.tpl" }
+			{include file="$tpl_dir./search-form.tpl" type='lease'}
 		</div>
 	</div>
 </div>

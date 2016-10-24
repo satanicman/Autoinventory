@@ -165,6 +165,10 @@
       @include flex-basis(140px);
       //@include flex-grow(0);
     }
+    &.medium-block {
+      @include flex-basis(280px);
+      @include align-self(center);
+    }
   }
 }
 
