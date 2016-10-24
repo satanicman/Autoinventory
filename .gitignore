@@ -1,5 +1,6 @@
 themes/*
 !themes/default-bootstrap
+themes/default-bootstrap/css/
 
 # ignore Editor files
 *.sublime-project
