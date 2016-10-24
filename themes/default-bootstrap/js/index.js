@@ -25,4 +25,41 @@
 
 $(document).ready(function(){
 	$('#home-page-tabs li:first, #index .tab-content ul:first').addClass('active');
+	var slider = $('#price_slider');
+	$(document).on('click', '#find_my_car', function () {
+		var type = $(this).closest('.searchForm').data('type');
+		var category_layered_href = $('#id_category_layered').val() + '#';
+		category_layered_href += '/' + $('#make_select_' + type).attr('data-url') + '-' + $('#make_select_' + type).val();
+		category_layered_href += '/' + $('#model_select_' + type).attr('data-url') + '-' + $('#model_select_' + type).val();
+		if(type === 'buy') {
+			category_layered_href += '/' + 'price-' + slider.slider("values", 0) + '-' + slider.slider("values", 1);
+		} else {
+			category_layered_href += '/' + $('#payment_select_' + type).attr('data-url') + '-' + $('#payment_select_' + type).val();
+			category_layered_href += '/' + $('#remaining_select_' + type).attr('data-url') + '-' + $('#remaining_select_' + type).val();
+		}
+		category_layered_href += '/' + $('#zip_' + type).attr('data-url') + '-' + $('#zip_' + type).val();
+		category_layered_href += '/' + $('#distance_select_' + type).attr('data-url') + '-' + $('#distance_select_' + type).val() + '-' + $('#distance_select_' + type).attr('data-max');
+		category_layered_href += '/type' + '-' + type;
+
+		location.href = category_layered_href;
+		return false;
+	});
+
+	var step = parseInt(slider.data('max') / 100);
+	slider.slider(
+		{
+			range: true,
+			step: step,
+			min: parseFloat(slider.data('min')),
+			max: parseFloat(slider.data('max')),
+			values: [parseFloat(slider.data('min')), parseFloat(slider.data('max'))],
+			slide: function(event, ui) {
+
+				from = formatCurrency(ui.values[0], 1, currencySign);
+				to = formatCurrency(ui.values[1], 1, currencySign);
+
+				$('#price_slider_range').html(from + ' - ' + to);
+			}
+		}
+	);
 });
