@@ -245,6 +245,23 @@
                 <h5 class="product_bottom-block-title">{l s="Vehicle Details"}</h5>
             </div>
             <div class="product_bottom-block-list col-lg-9 col-sm-12">
+
+                {if isset($features) && $features}
+                    <table class="product_bottom-block-table">
+                        {assign var=open value=0}
+                        {foreach from=features item=feature name=features}
+                            {if $feature.is_feature}{continue}{/if}
+                            {if ($smarty.foreach.features.index + 1) % 2}{assign var=open value=$open+1}<tr class="product-features-line">{/if}
+                            <td class="product-features-line-item product-features-line-name medium">{$feature.name}</td>
+                            <td class="product-features-line-item product-features-line-value">{$feature.name}</td>
+                            {if !($smarty.foreach.features.index + 1) % 2}{assign var=open value=$open-1}</tr>{/if}
+                        {/foreach}
+                        {if $open}
+                            <td colspan="2"></td>
+                            </tr>{/if}
+                    </table>
+                    {*<pre>{$features|var_dump}</pre>*}
+                {/if}
                 <table class="product_bottom-block-table">
                     <tr>
                         <td class="label">{l s="Vehicle Details"}</td>

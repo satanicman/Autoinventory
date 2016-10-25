@@ -258,7 +258,7 @@ a.fancybox-nav {
   font-family: "GothamProMedium";
   font-weight: 500;
   color: #0f2247;
-  padding: 0;
+  padding: 0 10px 0 0;
 }
 .product_bottom-block-table td.checked, .product_bottom-block-table p.checked {
   position: relative;

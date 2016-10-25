@@ -207,6 +207,12 @@ The `sprites` mixin generates identical output to the CSS template
   -webkit-flex-basis: 140px;
   flex-basis: 140px;
 }
+#searchForm .form-group.medium-block {
+  -webkit-flex-basis: 280px;
+  flex-basis: 280px;
+  -webkit-align-self: center;
+  align-self: center;
+}
 
 #page .columns-container {
   background: none;
