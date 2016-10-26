@@ -241,155 +241,64 @@
             </div> <!-- end pb-right-column-->
         </div> <!-- end primary_block -->
         <div class="product_bottom-block clearfix">
-            <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12">
-                <h5 class="product_bottom-block-title">{l s="Vehicle Details"}</h5>
-            </div>
-            <div class="product_bottom-block-list col-lg-9 col-sm-12">
-
-                {if isset($features) && $features}
+            {if isset($features_fields) && $features_fields}
+                <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12">
+                    <h5 class="product_bottom-block-title">{l s="Vehicle Details"}</h5>
+                </div>
+                <div class="product_bottom-block-list col-lg-9 col-sm-12">
                     <table class="product_bottom-block-table">
                         {assign var=open value=0}
-                        {foreach from=features item=feature name=features}
-                            {if $feature.is_feature}{continue}{/if}
+                        {foreach from=$features_fields item=feature name=features}
                             {if ($smarty.foreach.features.index + 1) % 2}{assign var=open value=$open+1}<tr class="product-features-line">{/if}
                             <td class="product-features-line-item product-features-line-name medium">{$feature.name}</td>
-                            <td class="product-features-line-item product-features-line-value">{$feature.name}</td>
+                            <td class="product-features-line-item product-features-line-value">{$feature.value}</td>
                             {if !($smarty.foreach.features.index + 1) % 2}{assign var=open value=$open-1}</tr>{/if}
                         {/foreach}
                         {if $open}
                             <td colspan="2"></td>
                             </tr>{/if}
                     </table>
-                    {*<pre>{$features|var_dump}</pre>*}
-                {/if}
-                <table class="product_bottom-block-table">
-                    <tr>
-                        <td class="label">{l s="Vehicle Details"}</td>
-                        <td>{l s="Vehicle Details"}</td>
-                        <td class="label">{l s="Engine"}</td>
-                        <td>{l s="4.4L V8 32 GDI DCHC Twin Turbo"}</td>
-                    </tr>
-                    <tr>
-                        <td class="label">{l s="Exterior Color"}</td>
-                        <td>{l s="Exterior Color"}</td>
-                        <td class="label">{l s="Transmission"}</td>
-                        <td>{l s="8-Speed Automatic"}</td>
-                    </tr>
-                    <tr>
-                        <td class="label">{l s="Interior Color"}</td>
-                        <td>{l s="Interior Color"}</td>
-                        <td class="label">{l s="Drivetrain"}</td>
-                        <td>{l s="RWD"}</td>
-                    </tr>
-                    <tr>
-                        <td class="label">{l s="Stock #"}</td>
-                        <td>{l s="# Stock"}</td>
-                        <td class="label">{l s="BodyStyle"}</td>
-                        <td>{l s="Suv"}</td>
-                    </tr>
-                    <tr>
-                        <td class="label">{l s="VIN"}</td>
-                        <td>{l s="VIN"}</td>
-                        <td class="label">{l s="Status"}</td>
-                        <td>{l s="Used"}</td>
-                    </tr>
-                    <tr>
-                        <td class="label">{l s="Fuel"}</td>
-                        <td>{l s="Fuel"}</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>
-                <div class="product_bottom-block-labels">
-                    <img src="{$img_dir}/auto-check-product.jpg" alt="auto check">
-                    <img src="{$img_dir}/carfax-product.jpg" alt="carfax">
+                </div>
+            {/if}
+            {if $product->auto_check || $product->carfax}
+                <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12"></div>
+                <div class="product_bottom-block-list product_bottom-block-labels">
+                    {if $product->auto_check}
+                        <img src="{$img_dir}/auto-check-product.jpg" alt="auto check">
+                    {/if}
+                    {if $product->carfax}
+                        <img src="{$img_dir}/carfax-product.jpg" alt="carfax">
+                    {/if}
+                </div>
+            {/if}
+        </div>
+        {if isset($features) && $features}
+            <div class="product_bottom-block clearfix">
+                <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12">
+                    <h5 class="product_bottom-block-title">{l s="Features"}</h5>
+                </div>
+                <div class="product_bottom-block-list col-lg-9 col-sm-12">
+                    <table class="product_bottom-block-table">
+                        {assign var=open value=0}
+                        {foreach from=$features item=feature name=features}
+                            {if $smarty.foreach.features.index % 3 == 0}
+                                <tr>
+                                {assign var=open value=3}
+                            {/if}
+                            {assign var=open value=$open-1}
+                            <td{if $feature.value} class="checked"{/if}>{$feature.name}</td>
+                            {if $smarty.foreach.features.index % 3 == 2}
+                                </tr>
+                                {assign var=open value=0}
+                            {/if}
+                        {/foreach}
+                        {if $open}
+                            <td colspan="{$open}"></td></tr>
+                        {/if}
+                    </table>
                 </div>
             </div>
-        </div>
-        <div class="product_bottom-block clearfix">
-            <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12">
-                <h5 class="product_bottom-block-title">{l s="Features"}</h5>
-            </div>
-            <div class="product_bottom-block-list col-lg-9 col-sm-12">
-                <table class="product_bottom-block-table">
-                    <tr>
-                        <td class="checked">{l s="Leathe interior surface"}</td>
-                        <td class="checked">
-                            <p class="label">{l s="Packages"}</p>
-                            <p>{l s="Excutive Package"}</p>
-                            <p>{l s="Competition Package"}</p>
-                        </td>
-                        <td class="checked">
-                            <p class="label">{l s="Packages"}</p>
-                            <p>{l s="Excutive Package"}</p>
-                            <p>{l s="Competition Package"}</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="checked" colspan="3">{l s="Other feature"}</td>
-                    </tr>
-                    <tr>
-                        <td class="checked">{l s="Some other feature"}</td>
-                        <td class="checked">{l s="Navigation"}</td>
-                        <td class="checked">{l s="Navigation"}</td>
-                    </tr>
-                    <tr>
-                        <td class="checked">{l s="Night Vision"}</td>
-                        <td class="checked">{l s="Night Vision"}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="product_bottom-block clearfix">
-            <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12">
-                <h5 class="product_bottom-block-title">{l s="Special Features"}</h5>
-            </div>
-            <div class="product_bottom-block-list col-lg-9 col-sm-12">
-                <table class="product_bottom-block-table">
-                    <tr>
-                        <td class="checked">{l s="Remote keyless entry"}</td>
-                        <td class="checked">{l s="Remote keyless entry"}</td>
-                    </tr>
-                    <tr>
-                        <td class="checked">{l s="Real-seat DVD player"}</td>
-                        <td class="checked">{l s="Real-seat DVD player"}</td>
-                    </tr>
-                    <tr>
-                        <td class="checked">{l s="Navigation"}</td>
-                        <td class="checked">{l s="Navigation"}</td>
-                    </tr>
-                    <tr>
-                        <td class="checked">{l s="Night Vision"}</td>
-                        <td class="checked">{l s="Night Vision"}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="product_bottom-block clearfix">
-            <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12">
-                <h5 class="product_bottom-block-title">{l s="Standart Equipment"}</h5>
-            </div>
-            <div class="product_bottom-block-list col-lg-9 col-sm-12">
-                <table class="product_bottom-block-table">
-                    <tr>
-                        <td>{l s="1st and 2nd row curtain head airbags"}</td>
-                        <td>{l s="1st and 2nd row curtain head airbags"}</td>
-                    </tr>
-                    <tr>
-                        <td>{l s="Anti-theft system"}</td>
-                        <td>{l s="Anti-theft system"}</td>
-                    </tr>
-                    <tr>
-                        <td>{l s="Audio system memory card slot"}</td>
-                        <td>{l s="Audio system memory card slot"}</td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">{l s="Show More"}</a></td>
-                        <td></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+        {/if}
         <div class="product_bottom-block clearfix">
             <div class="product_bottom-block-title-wrap col-lg-3 col-sm-12">
                 <h5 class="product_bottom-block-title">{l s="Seller’s Notes"}</h5>
@@ -397,10 +306,14 @@
             <div class="product_bottom-block-list col-lg-9 col-sm-12">
                 <table class="product_bottom-block-table">
                     <tr>
-                        <td class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tellus magna, tincidunt at commodo eget, tincidunt vel ex. Etiam tincidunt, lacus at malesuada fermentum, enim massa mollis dolor, non eleifend justo leo eget neque. Donec elementum posuere turpis, at vulputate odio lobortis at. Integer nisi felis, volutpat nec accumsan id, dapibus eget ligula. Nulla venenatis diam leo, ac dictum mauris ultrices eleifen. </td>
+                        <td class="description" >
+                            <div id="description" class="hideContent">
+                                <div class="description_content">{$product->description}</div>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
-                        <td><a href="#">{l s="Show More"}</a></td>
+                        <td class="show-more"><a href="#">{l s="Show More"}</a></td>
                     </tr>
                 </table>
             </div>

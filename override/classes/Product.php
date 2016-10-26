@@ -49,10 +49,14 @@ class Product extends ProductCore
 
     /** @var float Price in euros */
     public $price = 0;
-
+    //custom
     public $year = 1970;
 
     public $miles = 0;
+
+    public $auto_check = 0;
+    public $carfax = 0;
+    //custom #END
 
     public $specificPrice = 0;
 
@@ -261,8 +265,12 @@ class Product extends ProductCore
             'ecotax' =>                     array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice'),
             'minimal_quantity' =>           array('type' => self::TYPE_INT, 'shop' => true, 'validate' => 'isUnsignedInt'),
             'price' =>                      array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice', 'required' => true),
-            'year' =>                        array('type' => self::TYPE_INT, 'shop' => true, 'required' => false),
-            'miles' =>                        array('type' => self::TYPE_INT, 'shop' => true, 'required' => false),
+            //custom
+            'year' =>                       array('type' => self::TYPE_INT, 'shop' => true, 'required' => false),
+            'miles' =>                      array('type' => self::TYPE_INT, 'shop' => true, 'required' => false),
+            'auto_check' =>                 array('type' => self::TYPE_BOOL, 'required' => false),
+            'carfax' =>                     array('type' => self::TYPE_BOOL, 'required' => false),
+            //miles
             'wholesale_price' =>            array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice'),
             'unity' =>                      array('type' => self::TYPE_STRING, 'shop' => true, 'validate' => 'isString'),
             'unit_price_ratio' =>           array('type' => self::TYPE_FLOAT, 'shop' => true),
@@ -4408,13 +4416,13 @@ class Product extends ProductCore
     * @param $id_lang Language id
     * @return array Array with feature's data
     */
-    public static function getFrontFeaturesStatic($id_lang, $id_product)
+    public static function getFrontFeaturesStatic($id_lang, $id_product, $type = 1)
     {
         if (!Feature::isFeatureActive()) {
             return array();
         }
-        if (!array_key_exists($id_product.'-'.$id_lang, self::$_frontFeaturesCache)) {
-            self::$_frontFeaturesCache[$id_product.'-'.$id_lang] = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
+        if (!array_key_exists($id_product.'-'.$id_lang.'-'.$type, self::$_frontFeaturesCache)) {
+            $sql = '
 				SELECT name, value, pf.id_feature, f.is_feature
 				FROM '._DB_PREFIX_.'feature_product pf
 				LEFT JOIN '._DB_PREFIX_.'feature_lang fl ON (fl.id_feature = pf.id_feature AND fl.id_lang = '.(int)$id_lang.')
@@ -4422,15 +4430,17 @@ class Product extends ProductCore
 				LEFT JOIN '._DB_PREFIX_.'feature f ON (f.id_feature = pf.id_feature AND fl.id_lang = '.(int)$id_lang.')
 				'.Shop::addSqlAssociation('feature', 'f').'
 				WHERE pf.id_product = '.(int)$id_product.'
-				ORDER BY f.position ASC'
-            );
+				AND f.is_feature = '.(int)$type.'
+				ORDER BY f.position ASC';
+
+            self::$_frontFeaturesCache[$id_product.'-'.$id_lang.'-'.$type] = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
         }
-        return self::$_frontFeaturesCache[$id_product.'-'.$id_lang];
+        return self::$_frontFeaturesCache[$id_product.'-'.$id_lang.'-'.$type];
     }
 
-    public function getFrontFeatures($id_lang)
+    public function getFrontFeatures($id_lang, $type = 1)
     {
-        return Product::getFrontFeaturesStatic($id_lang, $this->id);
+        return Product::getFrontFeaturesStatic($id_lang, $this->id, $type);
     }
 
     public static function getAttachmentsStatic($id_lang, $id_product)

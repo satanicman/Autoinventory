@@ -233,8 +233,6 @@ class ProductControllerCore extends FrontController
 
             // Assign template vars related to the images
             $this->assignImages();
-            // Assign template vars related to the customer
-            $this->assignCustomer();
             // Assign attribute groups to the template
             $this->assignAttributesGroups();
 
@@ -756,22 +754,5 @@ class ProductControllerCore extends FrontController
     public function getCategory()
     {
         return $this->category;
-    }
-
-    private function assignCustomer()
-    {
-        $customer_id = Category::getCustomer($this->category->id);
-        if(!$customer_id)
-            return false;
-
-        $customer = new Customer($customer_id);
-        $customer->phones = Phones::getCustomerPhones($customer_id);
-        $address = new Address(Address::getFirstCustomerAddressId($customer_id));
-        $customer->address = $address->address1;
-        $link = new Link();
-        $customer->link = $link->getCategoryLink($this->category);
-
-        $this->context->smarty->assign('customer', $customer);
-        return true;
     }
 }

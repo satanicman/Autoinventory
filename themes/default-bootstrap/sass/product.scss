@@ -266,8 +266,8 @@ a.fancybox-nav {
 }
 
 /* miniatures */
-.pb-left-column #views_block {
-    padding-top: 100px;
+.content_prices {
+    padding-bottom: 100px;
 }
 
 #thumbs_list {
@@ -1388,3 +1388,20 @@ Quick View Styles
         filter: none;
     }
 }
+//show-more
+.hideContent {
+    overflow: hidden;
+    line-height: 1em;
+    height: 5em;
+}
+.show-more {
+    a {
+        &:hover,
+        &:focus,
+        &:active {
+            outline: none;
+            text-decoration: none;
+        }
+    }
+}
+//show-more #END

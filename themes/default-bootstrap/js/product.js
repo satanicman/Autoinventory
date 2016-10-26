@@ -116,6 +116,30 @@ if (typeof combinations !== 'undefined' && combinations)
 /* */
 $(document).ready(function()
 {
+    var closeHeight, openHeight;
+	$(".show-more a").on("click", function(e) {
+        var description = $("#description"),
+            content = $(".description_content"),
+            delay = 300,
+            text = "Show ",
+            that = $(this);
+		e.preventDefault();
+        if(!description.hasClass('open')) {
+            that.text(text + "Less");
+            closeHeight = description.height();
+            openHeight = content.height();
+            description.addClass('open');
+            description.animate({
+                height: openHeight + 'px'
+            }, delay);
+        } else {
+            that.text(text + "More");
+            description.removeClass('open');
+            description.animate({
+                height: closeHeight + 'px'
+            }, delay);
+        }
+	});
 	$('.flexslider').flexslider({
 		animation: "slide",
 		controlNav: "thumbnails",

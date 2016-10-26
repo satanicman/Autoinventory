@@ -225,6 +225,44 @@
 			</span>
 		</div>
 	</div>
+	<div class="form-group">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="carfax" type="radio" onclick=""}</span></div>
+		<label class="control-label col-lg-2">
+			{l s='Carfax'}
+		</label>
+		<div class="col-lg-9">
+			<span class="switch prestashop-switch fixed-width-lg">
+				<input type="radio" name="carfax" id="carfax_on" value="1" {if $product->carfax}checked="checked" {/if} />
+				<label for="carfax_on" class="radioCheck">
+					{l s='Yes'}
+				</label>
+				<input type="radio" name="carfax" id="carfax_off" value="0" {if !$product->carfax}checked="checked"{/if} />
+				<label for="carfax_off" class="radioCheck">
+					{l s='No'}
+				</label>
+				<a class="slide-button btn"></a>
+			</span>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="auto_check" type="radio" onclick=""}</span></div>
+		<label class="control-label col-lg-2">
+			{l s='Auto check'}
+		</label>
+		<div class="col-lg-9">
+			<span class="switch prestashop-switch fixed-width-lg">
+				<input type="radio" name="auto_check" id="auto_check_on" value="1" {if $product->auto_check}checked="checked" {/if} />
+				<label for="auto_check_on" class="radioCheck">
+					{l s='Yes'}
+				</label>
+				<input type="radio" name="auto_check" id="auto_check_off" value="0" {if !$product->auto_check}checked="checked"{/if} />
+				<label for="auto_check_off" class="radioCheck">
+					{l s='No'}
+				</label>
+				<a class="slide-button btn"></a>
+			</span>
+		</div>
+	</div>
 
 	<div class="form-group redirect_product_options" style="display:none">
 		<div class="col-lg-1"><span class="pull-right">{include file="controllers/products/multishop/checkbox.tpl" field="redirect_type" type="radio" onclick=""}</span></div>

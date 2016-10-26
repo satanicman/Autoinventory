@@ -298,8 +298,8 @@ a.fancybox-nav {
 }
 
 /* miniatures */
-.pb-left-column #views_block {
-  padding-top: 100px;
+.content_prices {
+  padding-bottom: 100px;
 }
 
 #thumbs_list ul#thumbs_list_frame {
@@ -1467,6 +1467,17 @@ Quick View Styles
 }
 .ie8 .box-security {
   filter: none;
+}
+
+.hideContent {
+  overflow: hidden;
+  line-height: 1em;
+  height: 5em;
+}
+
+.show-more a:hover, .show-more a:focus, .show-more a:active {
+  outline: none;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=product.css.map */
