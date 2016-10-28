@@ -81,6 +81,25 @@
 	</div>
 </div>
 <div class="form-group">
+	<label class="control-label col-lg-3" for="">{l s='Is feature' mod='blocklayered'}</label>
+	<div class="col-lg-9">
+		<span class="switch prestashop-switch fixed-width-lg">
+			<input type="radio" name="is_feature" id="is_feature_on" value="1"{if $is_feature} checked="checked"{/if}>
+			<label for="is_feature_on">
+				<i class="color_success"></i> {l s='Yes' mod='blocklayered'}
+			</label>
+			<input type="radio" name="is_feature" id="is_feature_off" value="0"{if !$is_feature} checked="checked"{/if}>
+			<label for="is_feature_off">
+				<i class="color_danger"></i> {l s='No' mod='blocklayered'}
+			</label>
+			<a class="slide-button btn"></a>
+		</span>
+	</div>
+	<div class="col-lg-9 col-lg-push-3">
+		<p class="help-block">{l s='Use this attribute as feature.' mod='blocklayered'}</p>
+	</div>
+</div>
+<div class="form-group">
 	<label class="control-label col-lg-3" for="">{l s='Indexable' mod='blocklayered'}</label>
 	<div class="col-lg-9">
 		<span class="switch prestashop-switch fixed-width-lg">

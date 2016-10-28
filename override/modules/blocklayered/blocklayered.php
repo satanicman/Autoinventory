@@ -260,8 +260,17 @@ class BlockLayeredOverride extends BlockLayered
 			WHERE `id_feature` = '.(int)$params['id_feature']
         );
 
+        $is_feature = Db::getInstance(_PS_USE_SQL_SLAVE_)->getValue(
+            'SELECT `is_feature`
+			FROM '._DB_PREFIX_.'feature
+			WHERE `id_feature` = '.(int)$params['id_feature']
+        );
+
         if ($is_indexable === false)
             $is_indexable = true;
+        if ($is_feature === false)
+            $is_feature = true;
+
         if(isset($params['id_feature'])) {
             $data_feature = Db::getInstance(_PS_USE_SQL_SLAVE_)->getRow('SELECT is_slider,filter_position FROM ' . _DB_PREFIX_ . 'feature WHERE id_feature=' . $params['id_feature']);
         }else{
@@ -282,6 +291,7 @@ class BlockLayeredOverride extends BlockLayered
             'languages' => Language::getLanguages(false),
             'default_form_language' => (int)$this->context->controller->default_form_language,
             'values' => $values,
+            'is_feature' =>(bool)$is_feature,
             'is_indexable' =>(bool)$is_indexable,
         ));
 
@@ -338,6 +348,9 @@ class BlockLayeredOverride extends BlockLayered
             'DELETE FROM '._DB_PREFIX_.'layered_indexable_feature_lang_value
 			WHERE `id_feature` = '.(int)$params['id_feature']
         );
+
+        $sql = sprintf('UPDATE `ps_feature` SET `is_feature` = %d WHERE id_feature = %d', (int)Tools::getValue('is_feature'), (int)$params['id_feature']);
+        Db::getInstance()->execute($sql);
         
         foreach (Language::getLanguages(false) as $language)
         {
