@@ -80,7 +80,8 @@ class MyAccountController extends MyAccountControllerCore
             $this->addCSS(
                 array(
                     _THEME_CSS_DIR_ . 'jquery.filer.css',
-                    _THEME_CSS_DIR_ . 'jquery.filer-dragdropbox-theme.css'
+                    _THEME_CSS_DIR_ . 'jquery.filer-dragdropbox-theme.css',
+                    _THEME_CSS_DIR_ . 'list-a-car.css'
                 )
             );
         } elseif ($this->tab == 'main') {
@@ -168,7 +169,7 @@ class MyAccountController extends MyAccountControllerCore
         $addprod_manufacturer_id = PaymentsCore::getManufacturer((int)$this->context->cookie->id_customer);
         if($addprod_manufacturer_id && isset($_GET['id_product']) && $id_product = $_GET['id_product']) {
             if(!Product::idIsOnCategoryId($id_product, array(array('id_category' => $addprod_manufacturer_id)))) {
-                $errors[] = Tools::displayError("Wow wow! This is not your car dude!!!");
+                $this->errors[] = Tools::displayError("Wow wow! This is not your car dude!!!");
             }
             if(isset($_GET['status']) && $status = $_GET['status']) {
                 $product = new Product($id_product, true, $this->context->language->id, $this->context->shop->id);
@@ -178,7 +179,7 @@ class MyAccountController extends MyAccountControllerCore
                 $product->update();
                 Tools::redirect('my-account');
             }
-            if(!isset($errors)) {
+            if(!$this->errors) {
                 $this->product = new Product($id_product, true, $this->context->language->id, $this->context->shop->id);
                 $feature = array();
                 foreach($this->product->getFrontFeatures($this->context->language->id) as $f) {
@@ -382,8 +383,8 @@ class MyAccountController extends MyAccountControllerCore
         )
             $this->errors[] = Tools::displayError('Year is not valid');
 
-        if (!Validate::isInt($miles = Tools::getValue('miles'))
-            || empty($miles)
+        if ((!Validate::isInt($miles = Tools::getValue('miles'))
+            || empty($miles)) && Tools::getValue('type') != 'leas'
         )
             $this->errors[] = Tools::displayError('Mileage is not valid');
 
@@ -392,8 +393,8 @@ class MyAccountController extends MyAccountControllerCore
         )
             $this->errors[] = Tools::displayError('Category Not selected');
 
-        if (!Validate::isCleanHtml($description = Tools::getValue('description'))
-            || Tools::strlen($description) < 10
+        if ((!Validate::isCleanHtml($description = Tools::getValue('description'))
+            || Tools::strlen($description) < 10) && Tools::getValue('type') != 'leas'
         )
             $this->errors[] = Tools::displayError('No description, or it is too short');
 

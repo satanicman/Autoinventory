@@ -154,59 +154,6 @@ The `sprites` mixin generates identical output to the CSS template
   padding-bottom: 0;
 }
 
-.vin {
-  display: -webkit-flex;
-  display: flex;
-}
-.vin input {
-  margin-right: 20px;
-}
-.vin-submit {
-  padding: 10px 30px;
-}
-.vin-submit#myAccountAddProduct {
-  margin: 40px 100px;
-}
-
-#features input[type='checkbox'] {
-  display: none;
-}
-#features input[type='checkbox']:checked ~ .label .checkbox:before {
-  display: inline-block;
-  width: 12px;
-  height: 8px;
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin: -7px 0 0 -6px;
-  border-style: solid;
-  border-color: #3c91da;
-  border-width: 0 0 2px 2px;
-  -moz-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-#features span {
-  display: inline-block;
-  vertical-align: middle;
-}
-#features .checkbox {
-  cursor: pointer;
-  min-height: 0;
-  margin: 0 4px 0 0;
-  overflow: hidden;
-  position: relative;
-  width: 17px;
-  height: 17px;
-  border: 1px solid #c3c8d1;
-}
-
-#images .jFiler-input-dragDrop {
-  width: 100%;
-}
-
 .auto-table td {
   padding: 0 20px 10px 0;
   font-weight: 500;

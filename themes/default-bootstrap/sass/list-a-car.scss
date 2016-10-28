@@ -1,0 +1,74 @@
+@import "compass";
+@import "theme_variables";
+
+.add-product {
+    padding: 0 100px;
+    #features {
+        .form-group {
+            padding: 0;
+        }
+    }
+}
+
+
+
+.vin {
+    @include display-flex;
+    input {
+        margin-right: 20px;
+    }
+    &-submit {
+        padding: 10px 30px;
+        &#myAccountAddProduct {
+            margin: 40px 0;
+        }
+    }
+}
+
+#features {
+    input[type='checkbox'] {
+        display: none;
+        &:checked ~ .label {
+            .checkbox {
+                &:before {
+                    display: inline-block;
+                    width: 12px;
+                    height: 8px;
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    margin: -7px 0 0 -6px;
+                    border-style: solid;
+                    border-color: $myaccount-light-blue;
+                    border-width: 0 0 2px 2px;
+                    @include rotate(-45deg);
+                }
+            }
+        }
+    }
+    span {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .checkbox {
+        cursor: pointer;
+        min-height: 0;
+        margin: 0 4px 0 0;
+        overflow: hidden;
+        position: relative;
+        width: 17px;
+        height: 17px;
+        border: 1px solid $myaccount-grey;
+    }
+}
+#images {
+    .jFiler-input-dragDrop {
+        width: 100%;
+    }
+}
+
+.myac-wrapper .tab-content {
+    margin: 0;
+    border: none;
+}
