@@ -7,10 +7,11 @@
     </div>
 {/if}
 <form class="add-product" method="POST" enctype="multipart/form-data">
+    {if isset($product->id) && $product->id}
+        <input type="hidden" name="product_id" id="product_id" value="{$product->id}">
+    {/if}
+    {if !isset($add)}
     <div id="information">
-        {if isset($product->id) && $product->id}
-            <input type="hidden" name="product_id" value="{$product->id}">
-        {/if}
         <h2 class="myac-title">{l s="Information"}</h2>
         {if isset($categories) && $categories}
             <div class="form-group required">
@@ -187,7 +188,8 @@
             </div>
         {/foreach}
     </div>
-    {if isset($product->id) && $product->id}
+    {/if}
+    {if (isset($product->id) && $product->id) || (isset($add) && $add)}
         <div id="images">
             <h2 class="myac-title">{l s="Images"}</h2>
             {*<input type="file" name="image_product[]" class="filer not_uniform" data-parsley-id="27" multiple="multiple">*}
@@ -195,8 +197,12 @@
                    multiple="multiple">
         </div>
     {/if}
+    {if !isset($add)}
     <button class="vin-submit btn btn-default" name="myAccountAddProduct"
             id="myAccountAddProduct">{if isset($product->id) && $product->id}{l s="Update product"}{else}{l s="Add product"}{/if}</button>
+    {else}
+        <input type="hidden" name="add" id="add" value="1">
+    {/if}
     <div id="preloader_list">
         <img src="{$img_dir}/preloader.gif" alt="preloader">
     </div>

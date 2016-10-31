@@ -75,6 +75,8 @@ function setModels(make, selected) {
 }
 
 function setMake(makes, selected_make, selected_model) {
+    if(!$('#make').length)
+        return false;
     $('#preloader_list').fadeIn('fast');
     if(makes && typeof makes === 'object') {
         $('#make').html('');

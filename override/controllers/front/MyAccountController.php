@@ -45,17 +45,26 @@ class MyAccountController extends MyAccountControllerCore
     {
         parent::postProcess();
 
-        if(Tools::isSubmit('updateCustomer'))
-            $this->updateCustomer();
+        $this->ajax = Tools::isSubmit('ajax', 0);
 
-        if(Tools::isSubmit('updateBilling'))
-            $this->updateBilling();
+        if(Tools::isSubmit('downloadImages'))
+            $this->downloadImages();
+        elseif(Tools::isSubmit('removeImages')) {
+            $this->removeImages();
+        } else {
 
-        if(Tools::isSubmit('updateEmail'))
-            $this->updateEmail();
+            if (Tools::isSubmit('updateCustomer'))
+                $this->updateCustomer();
 
-        if(Tools::isSubmit('updatePassword'))
-            $this->updatePassword();
+            if (Tools::isSubmit('updateBilling'))
+                $this->updateBilling();
+
+            if (Tools::isSubmit('updateEmail'))
+                $this->updateEmail();
+
+            if (Tools::isSubmit('updatePassword'))
+                $this->updatePassword();
+        }
 
     }
 
@@ -435,6 +444,11 @@ class MyAccountController extends MyAccountControllerCore
                 $product->active = Configuration::get('ADDPROD_ADDACTIVE');
                 $result = $product->add();
                 $message['text'] = 'Car successfully added';
+
+                $this->context->smarty->assign(array(
+                    'add' => 1,
+                    'product' => $product,
+                ));
             }
             StockAvailable::setProductOutOfStock((int)$product->id, 2);
             if (!$result)
@@ -812,5 +826,97 @@ class MyAccountController extends MyAccountControllerCore
             $customer->update();
             $this->updateContext($customer);
         }
+    }
+
+    private function downloadImages()
+    {
+        $photos = $_FILES['image_product'];
+        $product_id = Tools::getValue('id');
+        if(!$product_id) {
+            if ($this->ajax)
+                die(false);
+            else
+                return false;
+        }
+
+
+        if(!$this->checkProduct($product_id)) {
+            if ($this->ajax)
+                die(false);
+            else
+                return false;
+        }
+
+        $product = new Product($product_id, true, $this->context->language->id, $this->context->shop->id);
+
+        $image = new Image();
+        $image->id_product = $product->id;
+        if(!Image::getCover($product->id))
+            $image->cover = 1;
+        $image->position = 0;
+        $image->legend = array_fill_keys(Language::getIDs(), (string)$photos['name'][0] . ' - ' . $product->name);
+        $image->save();
+        $name = $image->getPathForCreation();
+
+        for ($i = 0; $i < count($photos['tmp_name']); $i++) {
+            if ($photos['size'][$i] < 5000000) {
+                move_uploaded_file($photos['tmp_name'][$i], $name . '.' . $image->image_format);
+            } else {
+                if($this->ajax)
+                    die(false);
+                else
+                    return false;
+            }
+        }
+        $types = ImageType::getImagesTypes('products');
+        foreach ($types as $type)
+            ImageManager::resize($name . '.' . $image->image_format, $name . '-' . $type['name'] . '.' . $image->image_format, $type['width'], $type['height'], $image->image_format);
+
+        if($this->ajax)
+            die(true);
+
+        return true;
+    }
+    private function removeImages()
+    {
+        $name = Tools::getValue('name');
+        $product_id = Tools::getValue('id');
+
+        if(!$this->checkProduct($product_id)) {
+            if ($this->ajax)
+                die(false);
+            else
+                return false;
+        }
+
+        $product = new Product($product_id, true, $this->context->language->id, $this->context->shop->id);
+
+        if(!$product->name) {
+            if ($this->ajax)
+                die(false);
+            else
+                return false;
+        }
+
+        $image_id = Image::getImageIdByLegend($name . " - " . $product->name, $product_id);
+        
+        $image = new Image($image_id);
+        $image->deleteImage();
+
+        if ($this->ajax)
+            die(false);
+
+        return true;
+    }
+
+    private function checkProduct($product_id = false) {
+        if(!$product_id)
+            return false;
+
+        $addprod_manufacturer_id = Category::getManufacturer((int)$this->context->cookie->id_customer);
+        if(!Product::idIsOnCategoryId($product_id, array(array('id_category' => $addprod_manufacturer_id))))
+            return false;
+
+        return true;
     }
 }
