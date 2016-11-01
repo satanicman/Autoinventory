@@ -62,9 +62,11 @@ $(document).ready(function(){
 });
 
 window.onload = function() {
+	console.log(homeslider_speed);
 	$('#homeslider_wrap').flexslider({
 		animation: "fade",
 		reverse: true,
+		slideshowSpeed: parseInt(homeslider_pause),
 		animationSpeed: parseInt(homeslider_speed),
 		directionNav: false,
 		start: function () {
