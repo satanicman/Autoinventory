@@ -1,7 +1,7 @@
-(function() {
+
     window.EDAPIEX = window.EDAPIEX || {};
     EDAPIEX.MMYS = EDAPIEX.MMYS || {
-            API_KEY: "",
+            API_KEY: "yhubvu7krmyyuz9qx5rmcgp7",
             BASE_URL: window.location.protocol == 'https:' ? 'https://api.edmunds.com' : 'http://api.edmunds.com',
             YEAR: 0,
             STATE: '',
@@ -176,7 +176,17 @@
                 var fn = function(data) {
                     var json = JSON.parse(data);
                     fn2(json)
-                }
+                };
+                this.api(endpoint, {}, fn);
+            },
+            getProp: function(id, fn2, type) {
+                this.STYLE_ID = typeof id == 'string' ? id : alert('style id is missing.');
+                this.TYPE = typeof type == 'string' ? type : 'engines';
+                var endpoint = this.STYLE_ID ? '/api/vehicle/v2/styles/'+ this.STYLE_ID + '/' + this.TYPE + '/' : '/api/vehicle/v2/makes/';
+                var fn = function(data) {
+                    var json = JSON.parse(data);
+                    fn2(json);
+                };
                 this.api(endpoint, {}, fn);
             },
             api: function(endpoint, params, fn, method, format) {
@@ -220,4 +230,3 @@
                 }
             }
         };
-})();
