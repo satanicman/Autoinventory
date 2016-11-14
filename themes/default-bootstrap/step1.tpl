@@ -73,12 +73,12 @@
                     </div>
                 </div>
                 <div class="part medium">
-                    <label for="exp_month" class="label">{l s="Exp. Month"}</label>
-                    <input type="text" class="form-control" placeholder="{l s="Month"}" name="exp_month" id="month">
+                    <label for="month" class="label">{l s="Exp. Month"}</label>
+                    <input type="text" class="form-control" placeholder="{l s="Month"}" name="month" id="month">
                 </div>
                 <div class="part medium">
-                    <label for="exp_day" class="label">{l s="Exp. Day"}</label>
-                    <input type="text" class="form-control" placeholder="{l s="Year"}" name="exp_day" id="day">
+                    <label for="year" class="label">{l s="Exp. Year"}</label>
+                    <input type="text" class="form-control" placeholder="{l s="Year"}" name="year" id="year">
                 </div>
             </div>
         </div>

@@ -71,7 +71,7 @@ function billingInfo() {
 			card_number: $('#card_number').val(),
 			cvv: $('#cvv').val(),
 			month: $('#month').val(),
-			day: $('#day').val(),
+			year: $('#year').val(),
 			email_create: $('#email').val(),
 		},
 		success: function(jsonData)

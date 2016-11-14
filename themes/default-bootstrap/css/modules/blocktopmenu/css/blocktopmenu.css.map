@@ -1,7 +1,7 @@
 {
 "version": 3,
 "mappings": "AAAA;;;;;;;;;;;;EAYE;AAoQF;;;;;;;;;;;;;;;;;;;;;;;;;EAyBE;AA2BF;;;;;EAKE;ACvUF,eAAgB;EACd,YAAY,EAAE,IAAI",
-"sources": ["file:///D:/OpenServer/domains/autoinventory.loc/themes/default-bootstrap/sass/_sprite.scss","../../../../modules/blocktopmenu/css/blocktopmenu.scss"],
+"sources": ["file:///D:/Projects/Autoinventory/www/themes/default-bootstrap/sass/_sprite.scss","../../../../modules/blocktopmenu/css/blocktopmenu.scss"],
 "names": [],
 "file": "blocktopmenu.css"
 }
