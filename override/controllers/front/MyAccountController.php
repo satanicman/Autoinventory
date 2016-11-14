@@ -51,6 +51,8 @@ class MyAccountController extends MyAccountControllerCore
             $this->downloadImages();
         elseif(Tools::isSubmit('removeImages')) {
             $this->removeImages();
+        } elseif(Tools::isSubmit('unSubscribe')) {
+            $this->unSubscribe();
         } else {
 
             if (Tools::isSubmit('updateCustomer'))
@@ -113,6 +115,11 @@ class MyAccountController extends MyAccountControllerCore
             $this->addCSS(
                 array(
                     _THEME_CSS_DIR_ . 'dealer.css'
+                )
+            );
+            $this->addJS(
+                array(
+                    _THEME_JS_DIR_ . 'dealer.js'
                 )
             );
         }
@@ -918,5 +925,39 @@ class MyAccountController extends MyAccountControllerCore
             return false;
 
         return true;
+    }
+
+    private function unSubscribe()
+    {
+        $customer = new Customer($this->context->cookie->id_customer);
+        if($customer->subscription_id) {
+            $response = Billing::cancelSubscription($customer->subscription_id);
+            if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
+//                $customer->subscription_id = '';
+//                $customer->update();
+//                echo "<pre>";
+//                print_r($customer->subscription_id);
+//                echo "</pre>";
+                if($this->ajax) {
+                    die(true);
+                } else {
+                    return true;
+                }
+            } else {
+                $errorMessages = $response->getMessages()->getMessage();
+                $this->errors[] = "Response : " . $errorMessages[0]->getCode() . "  " . $errorMessages[0]->getText();
+            }
+        } else {
+            $this->errors[] = "Sorry but you don't subscribe now";
+        }
+
+        if($this->ajax && $this->errors) {
+            die(Tools::jsonEncode(
+                array(
+                    'hasError' => (bool)$this->errors,
+                    'errors' => (array)$this->errors
+                )
+            ));
+        }
     }
 }

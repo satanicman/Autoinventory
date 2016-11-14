@@ -36,6 +36,7 @@ class Customer extends CustomerCore
     public $twitter;
     public $site;
     public $date_end;
+    public $subscription_id;
 //    custom #END
     public $id;
 
@@ -179,6 +180,7 @@ class Customer extends CustomerCore
             'twitter' =>                        array('type' => self::TYPE_STRING, 'validate' => 'isReference'),
             'site' =>                           array('type' => self::TYPE_STRING, 'validate' => 'isReference'),
             'date_end' =>                       array('type' => self::TYPE_DATE, 'validate' => 'isDate'),
+            'subscription_id' =>                array('type' => self::TYPE_STRING, 'validate' => 'isString'),
             // custom    #END
             'secure_key' =>                     array('type' => self::TYPE_STRING, 'validate' => 'isMd5', 'copy_post' => false),
             'lastname' =>                       array('type' => self::TYPE_STRING, 'validate' => 'isName', 'size' => 32),

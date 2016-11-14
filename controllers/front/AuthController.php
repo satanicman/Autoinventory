@@ -913,39 +913,45 @@ or Car Leasing Service to be part of AutoInventory'
     {
         $billing = new Billing();
 
-        if(Tools::getValue('business_name') && !Validate::isString(Tools::getValue('business_name'))) {
-            $this->errors[] = Tools::displayError('Invalid business_name value');
-        }
-        if(Tools::getValue('adress_1') && !Validate::isString(Tools::getValue('adress_1'))) {
-            $this->errors[] = Tools::displayError('Invalid adress_1 value');
-        }
-        if(Tools::getValue('adress_2') && !Validate::isString(Tools::getValue('adress_2'))) {
-            $this->errors[] = Tools::displayError('Invalid adress_2 value');
-        }
-        if(Tools::getValue('city') && !Validate::isString(Tools::getValue('city'))) {
-            $this->errors[] = Tools::displayError('Invalid city value');
-        }
-        if(Tools::getValue('id_state') && !Validate::isUnsignedId(Tools::getValue('id_state'))) {
-            $this->errors[] = Tools::displayError('Invalid state value');
-        }
-        if(Tools::getValue('zip_code') && !Validate::isInt(Tools::getValue('zip_code'))) {
-            $this->errors[] = Tools::displayError('Invalid zip_code value');
-        }
-        if(Tools::getValue('card_name') && !Validate::isString(Tools::getValue('card_name'))) {
-            $this->errors[] = Tools::displayError('Invalid card_name value');
-        }
-        if(Tools::getValue('card_number') && !Validate::isCreditCard(Tools::getValue('card_number'))) {
-            $this->errors[] = Tools::displayError('Invalid card_number value');
-        }
-        if(Tools::getValue('cvv') && !Validate::isInt(Tools::getValue('cvv'))) {
-            $this->errors[] = Tools::displayError('Invalid cvv value');
-        }
-        if(Tools::getValue('month') && !Validate::isString(Tools::getValue('month'))) {
-            $this->errors[] = Tools::displayError('Invalid month value');
-        }
-        if(Tools::getValue('day') && !Validate::isString(Tools::getValue('day'))) {
-            $this->errors[] = Tools::displayError('Invalid day value');
-        }
+//        if(Tools::getValue('business_name') && !Validate::isString(Tools::getValue('business_name'))) {
+//            $this->errors[] = Tools::displayError('Invalid business_name value');
+//        }
+//        if(Tools::getValue('adress_1') && !Validate::isString(Tools::getValue('adress_1'))) {
+//            $this->errors[] = Tools::displayError('Invalid adress_1 value');
+//        }
+//        if(Tools::getValue('adress_2') && !Validate::isString(Tools::getValue('adress_2'))) {
+//            $this->errors[] = Tools::displayError('Invalid adress_2 value');
+//        }
+//        if(Tools::getValue('city') && !Validate::isString(Tools::getValue('city'))) {
+//            $this->errors[] = Tools::displayError('Invalid city value');
+//        }
+//        if(Tools::getValue('id_state') && !Validate::isUnsignedId(Tools::getValue('id_state'))) {
+//            $this->errors[] = Tools::displayError('Invalid state value');
+//        }
+//        if(Tools::getValue('zip_code') && !Validate::isInt(Tools::getValue('zip_code'))) {
+//            $this->errors[] = Tools::displayError('Invalid zip_code value');
+//        }
+//        if(Tools::getValue('card_name') && !Validate::isString(Tools::getValue('card_name'))) {
+//            $this->errors[] = Tools::displayError('Invalid card_name value');
+//        }
+//        if(Tools::getValue('card_number') && !Validate::isCreditCard(Tools::getValue('card_number'))) {
+//            $this->errors[] = Tools::displayError('Invalid card_number value');
+//        }
+//        if(Tools::getValue('cvv') && !Validate::isInt(Tools::getValue('cvv'))) {
+//            $this->errors[] = Tools::displayError('Invalid cvv value');
+//        }
+//        if(Tools::getValue('month') && !Validate::isString(Tools::getValue('month'))) {
+//            $this->errors[] = Tools::displayError('Invalid month value');
+//        }
+//        if(Tools::getValue('year') && !Validate::isString(Tools::getValue('year'))) {
+//            $this->errors[] = Tools::displayError('Invalid year value');
+//        }
+
+        $this->errors = array_unique(array_merge($this->errors, $billing->validateController()));
+
+        // Check the requires fields which are settings in the BO
+        $this->errors = $this->errors + $billing->validateFieldsRequiredDatabase();
+
         if (!$this->errors) {
             if ($business_name = Tools::getValue('business_name')) {
                 $billing->business_name = $business_name;
@@ -977,8 +983,8 @@ or Car Leasing Service to be part of AutoInventory'
             if ($month = Tools::getValue('month')) {
                 $billing->month = $month;
             }
-            if ($day = Tools::getValue('day')) {
-                $billing->day = $day;
+            if ($year = Tools::getValue('year')) {
+                $billing->year = $year;
             }
             if($billing->add()) {
                 $this->id_billing = $billing->id;

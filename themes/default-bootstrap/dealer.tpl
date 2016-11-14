@@ -329,13 +329,16 @@
                         <div class="part medium">
                             <label for="exp_day" class="label">{l s="Exp. Day"}</label>
                             <input type="text" class="form-control" name="day" id="cvv"
-                                   placeholder="Exp. Day"{if isset($billing->day) && $billing->day} value="{$billing->day}"{/if}>
+                                   placeholder="Exp. Day"{if isset($billing->year) && $billing->year} value="{$billing->year}"{/if}>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
             <button class="btn btn-default btn-update" name="updateBilling">{l s="Update"}</button>
+            {if isset($customer->subscription_id) && $customer->subscription_id}
+                <button class="btn btn-default" name="unSubscribe" id="unSubscribe">{l s="Terminate the paid membership"}</button>
+            {/if}
         </form>
     </div>
 </div>
