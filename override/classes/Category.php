@@ -105,7 +105,7 @@ class Category extends CategoryCore {
 				WHERE product_shop.`id_shop` = '.(int)$context->shop->id.'
 					AND cp.`id_category` = '.(int)$this->id.
 					' AND p.`status` = '.(int)$status
-            .($active ? ' AND product_shop.`active` = 1' : '')
+            .' AND product_shop.`active` = '. ($active ? 1 : 0)
             .($front ? ' AND product_shop.`visibility` IN ("both", "catalog")' : '')
             .($id_supplier ? ' AND p.id_supplier = '.(int)$id_supplier : '');
 

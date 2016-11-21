@@ -51,11 +51,10 @@ class Product extends ProductCore
     public $price = 0;
     //custom
     public $year = 1970;
-
     public $miles = 0;
-
     public $auto_check = 0;
     public $carfax = 0;
+    public $status = 0;
     //custom #END
 
     public $specificPrice = 0;
@@ -270,6 +269,7 @@ class Product extends ProductCore
             'miles' =>                      array('type' => self::TYPE_INT, 'shop' => true, 'required' => false),
             'auto_check' =>                 array('type' => self::TYPE_BOOL, 'required' => false),
             'carfax' =>                     array('type' => self::TYPE_BOOL, 'required' => false),
+            'status' =>                     array('type' => self::TYPE_INT, 'required' => false, 'validate' => 'isInt'),
             //miles
             'wholesale_price' =>            array('type' => self::TYPE_FLOAT, 'shop' => true, 'validate' => 'isPrice'),
             'unity' =>                      array('type' => self::TYPE_STRING, 'shop' => true, 'validate' => 'isString'),

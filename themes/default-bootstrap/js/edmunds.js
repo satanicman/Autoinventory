@@ -1,9 +1,11 @@
 var api_key = 'yhubvu7krmyyuz9qx5rmcgp7';
 var mmys = EDAPIEX.MMYS;
 $(document).ready(function () {
-    var t = $('#make');
-    if ($('#make').length)
+    var mk = $('#make');
+    if (mk.length && mk[0].tagName === 'SELECT')
         setMake();
+    else
+        return false;
     $(document).on('click', '#vin-submit', function (e) {
         $('#preloader_list').fadeIn('fast');
         var $field, edmund, vin;

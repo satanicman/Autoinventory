@@ -1,29 +1,5 @@
 $(document).ready(function () {
-    tinyMCE.init({
-        mode: "none",
-        theme: "advanced",
-        plugins: "safari,pagebreak,style,table,advimage,advlink,inlinepopups,media,contextmenu,paste,fullscreen",
-        // Theme options
-        theme_advanced_buttons1: "newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontselect,fontsizeselect",
-        theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,image,cleanup,code,,|,forecolor,backcolor",
-        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,media,|,ltr,rtl",
-        theme_advanced_buttons4: "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,pagebreak,|,fullscreen,|,anchor",
-        theme_advanced_toolbar_location: "top",
-        theme_advanced_toolbar_align: "left",
-        theme_advanced_statusbar_location: "bottom",
-        theme_advanced_resizing: false,
-        content_css: baseUri + "themes/default-bootstrap/css/tinymce.css",
-        document_base_url: baseUri ,
-        width: "100%",
-        height: "auto",
-        font_size_style_values: "8pt, 10pt, 12pt, 14pt, 18pt, 24pt, 36pt",
-        elements: "nourlconvert",
-        convert_urls: false,
-        language: "en"
-    });
-    tinyMCE.execCommand("mceAddControl", true, "description");
-
-        $('#filer_input').filer({
+    $('#filer_input').filer({
         limit: null,
         maxSize: null,
         extensions: null,

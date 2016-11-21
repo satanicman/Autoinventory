@@ -189,19 +189,29 @@ class MyAccountController extends MyAccountControllerCore
             }
             if(isset($_GET['status']) && $status = $_GET['status']) {
                 $product = new Product($id_product, true, $this->context->language->id, $this->context->shop->id);
-                $product->status = $status;
-                if($status == 3)
-                    $product->active = 0;
-                $product->update();
+                if($status != 4) {
+                    $product->status = $status == -1 ? 0 : $status;
+                    if ($status == 3)
+                        $product->active = 0;
+
+                    $product->update();
+                } else {
+                    $product->delete();
+                }
                 Tools::redirect('my-account');
             }
             if(!$this->errors) {
                 $this->product = new Product($id_product, true, $this->context->language->id, $this->context->shop->id);
                 $feature = array();
+                $fields = array();
                 foreach($this->product->getFrontFeatures($this->context->language->id) as $f) {
                     $feature[$f['id_feature']] = $f;
                 }
+                foreach($this->product->getFrontFeatures($this->context->language->id, 0) as $f) {
+                    $fields[$f['id_feature']] = $f;
+                }
                 $this->product->features = $feature;
+                $this->product->fields = $fields;
                 $this->context->smarty->assign('product', $this->product);
             }
         }
@@ -218,12 +228,16 @@ class MyAccountController extends MyAccountControllerCore
             $category = new Category($manufacturer_id, Configuration::get('PS_LANG_DEFAULT'));
             $products = array();
             $products[0]['nbProducts'] = $category->getProducts(null, null, null, $this->orderBy, $this->orderWay, true);
+            $products['pending']['nbProducts'] = $category->getProducts(null, null, null, $this->orderBy, $this->orderWay, true, false);
             $products[3]['nbProducts'] = $category->getProducts(null, null, null, $this->orderBy, $this->orderWay, true, false, false, 1, true, null, 3);
 
             foreach ($products as $type => $product) {
                 $this->pagination((int)$product['nbProducts']); // Pagination must be call after "getProducts"
 
-                $product['cat_products'] = $products[$type]['cat_products'] = $category->getProducts($this->context->language->id, (int)$this->p, (int)$this->n, $this->orderBy, $this->orderWay, false, ($type == 3 ? false : true), false, 1, true, null, $type);
+                if($type === 'pending') {
+                    $product['cat_products'] = $products[$type]['cat_products'] = $category->getProducts($this->context->language->id, (int)$this->p, (int)$this->n, $this->orderBy, $this->orderWay, false, false);
+                } else
+                    $product['cat_products'] = $products[$type]['cat_products'] = $category->getProducts($this->context->language->id, (int)$this->p, (int)$this->n, $this->orderBy, $this->orderWay, false, ($type == 3 ? false : true), false, 1, true, null, $type);
 
                 $this->addColorsToProductList($product['cat_products']);
 
