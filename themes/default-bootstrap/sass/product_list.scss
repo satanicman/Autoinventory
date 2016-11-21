@@ -382,6 +382,7 @@ ul.product_list.list {
   > li {
     padding-bottom: 40px;
     .left-block {
+      padding: 0;
       @media (max-width: $screen-xs - 1) { // max 479px
         width: 100%;
       }
@@ -421,9 +422,10 @@ ul.product_list.list {
       float: left;
     }
     .center-block {
-      padding: 0 0 0 25px;
+      padding: 0 30px 0 25px;
       .left {
         float: left;
+        padding: 0;
       }
     }
     .functional-buttons {
@@ -466,7 +468,8 @@ ul.product_list.list {
       }
     }
     .right-block {
-      padding-left: 70px;
+      padding-left: 0;
+      padding-right: 0;
       float: right;
       .right-block-content {
         @media (min-width: $screen-md) { // min 991px
