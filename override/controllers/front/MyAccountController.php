@@ -440,7 +440,7 @@ class MyAccountController extends MyAccountControllerCore
                 $i++;
             }
         }
-
+//        $this->errors = array();
         if (!count($this->errors)) {
             $features = Tools::getValue('features');
 
@@ -483,6 +483,8 @@ class MyAccountController extends MyAccountControllerCore
                     $product->addToCategories($cats);
                 }
 
+                $id_make = 0;
+                $id_model = 0;
                 foreach ($features as $id => $feature) {
                     if ($id === 'features' && $feature) {
                         foreach ($feature as $fid => $f) {
@@ -530,6 +532,16 @@ class MyAccountController extends MyAccountControllerCore
                     }
 
                     Product::addFeatureProductImport($product->id, $id, $id_feature_value);
+                    if($feature['required'] == 'Make'){
+                        $id_make = $id_feature_value;
+                    }
+                    if($feature['required'] == 'Model'){
+                        $id_model = $id_feature_value;
+                    }
+                }
+                if($id_make && $id_model) {
+                    $sql = "UPDATE " . _DB_PREFIX_ . "feature_value SET id_feature_value_parent={$id_make} WHERE id_feature_value={$id_model}";
+                    Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
                 }
                 //category
                 Product::addFeatureProductImport($product->id, 33, $category);
