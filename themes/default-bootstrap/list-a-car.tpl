@@ -256,7 +256,6 @@
     {if (isset($product->id) && $product->id) || (isset($add) && $add)}
         <div id="images">
             <h2 class="myac-title">{l s="Images"}</h2>
-            {*<input type="file" name="image_product[]" class="filer not_uniform" data-parsley-id="27" multiple="multiple">*}
             <input type="file" name="image_product[]" id="filer_input" class="filer not_uniform" data-parsley-id="27"
                    multiple="multiple">
         </div>
@@ -265,6 +264,7 @@
     <button class="vin-submit btn btn-default" name="myAccountAddProduct"
             id="myAccountAddProduct">{if isset($product->id) && $product->id}{l s="Update product"}{else}{l s="Add product"}{/if}</button>
     {else}
+        <button class="vin-submit btn btn-default" name="myAccountAddImages" id="myAccountAddProduct">{l s="Upload images"}</button>
         <input type="hidden" name="add" id="add" value="1">
     {/if}
     <div id="preloader_list">

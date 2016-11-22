@@ -47,7 +47,7 @@ class MyAccountController extends MyAccountControllerCore
 
         $this->ajax = Tools::isSubmit('ajax', 0);
 
-        if(Tools::isSubmit('downloadImages'))
+        if(Tools::isSubmit('downloadImages') || Tools::isSubmit('myAccountAddImages'))
             $this->downloadImages();
         elseif(Tools::isSubmit('removeImages')) {
             $this->removeImages();
@@ -852,7 +852,7 @@ class MyAccountController extends MyAccountControllerCore
     private function downloadImages()
     {
         $photos = $_FILES['image_product'];
-        $product_id = Tools::getValue('id');
+        $product_id = Tools::getValue('product_id');
         if(!$product_id) {
             if ($this->ajax)
                 die(false);
@@ -869,17 +869,19 @@ class MyAccountController extends MyAccountControllerCore
         }
 
         $product = new Product($product_id, true, $this->context->language->id, $this->context->shop->id);
+        $last = false;
+        for ($i = 0; $i < count($photos['tmp_name']); $last = ((++$i + 1) === count($photos['tmp_name']))) {
+            $image = new Image();
+            $image->id_product = $product->id;
+            if(isset($_POST['cover']) && $photos['name'][$i] === $_POST['cover'])
+                $image->cover = 1;
+            elseif($last && !Image::getCover($product->id))
+                $image->cover = 1;
+            $image->position = 0;
+            $image->legend = array_fill_keys(Language::getIDs(), (string)$photos['name'][$i] . ' - ' . $product->name);
+            $image->save();
+            $name = $image->getPathForCreation();
 
-        $image = new Image();
-        $image->id_product = $product->id;
-        if(!Image::getCover($product->id))
-            $image->cover = 1;
-        $image->position = 0;
-        $image->legend = array_fill_keys(Language::getIDs(), (string)$photos['name'][0] . ' - ' . $product->name);
-        $image->save();
-        $name = $image->getPathForCreation();
-
-        for ($i = 0; $i < count($photos['tmp_name']); $i++) {
             if ($photos['size'][$i] < 5000000) {
                 move_uploaded_file($photos['tmp_name'][$i], $name . '.' . $image->image_format);
             } else {
@@ -973,5 +975,28 @@ class MyAccountController extends MyAccountControllerCore
                 )
             ));
         }
+    }
+
+    private function addImages()
+    {
+        echo "<pre>";
+        print_r('POST');
+        echo "</pre>";
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+        echo "<pre>";
+        print_r('FILES');
+        echo "</pre>";
+        echo "<pre>";
+        print_r($_FILES['image_product']);
+        echo "</pre>";
+        echo "<pre>";
+        print_r('GET');
+        echo "</pre>";
+        echo "<pre>";
+        print_r($_GET);
+        echo "</pre>";
+        die();
     }
 }

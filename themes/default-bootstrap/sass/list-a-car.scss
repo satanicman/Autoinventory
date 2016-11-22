@@ -72,3 +72,56 @@
     margin: 0;
     border: none;
 }
+
+.img-cover {
+    label {
+        margin: 0;
+    }
+    input {
+        vertical-align: top;
+        margin: 0 3px 0 0;
+        width: 17px;
+        height: 17px;
+        + label {
+            cursor: pointer;
+        }
+        &:checked {
+            + label {
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+        &:not(checked) {
+            position: absolute;
+            opacity: 0;
+            + label {
+                position: relative;
+                padding: 0 0 0 25px;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    margin-top: -10px;
+                    left: 0;
+                    width: 20px;
+                    height: 20px;
+                    border: $main_border;
+                }
+                &:after {
+                    content: '';
+                    position: absolute;
+                    opacity: 0;
+                    left: 4px;
+                    width: 15px;
+                    @include transform(rotate(135deg));
+                    @include transition(opacity .3s);
+                    height: 9px;
+                    border-style: solid;
+                    border-color: #32cc70;
+                    border-width: 2px 2px 0 0;
+                }
+            }
+        }
+    }
+}
