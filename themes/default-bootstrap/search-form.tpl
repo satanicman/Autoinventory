@@ -3,9 +3,9 @@
     <div class="top-line">
         <div class="form-group half odd make">
             <label for="make" class="label">{l s="Make"}</label>
-            <select name="{$id_feature_make}" id="make_select_{$type}" data-url="{$make_feature_url}"  class="form-control not_uniform">
+            <select name="{$id_feature_make}" id="make_select_{$type}" data-url="{$make_feature_url}"  class="form-control not_uniform make_select">
                 {foreach from=$makes item=model}
-                    <option value="{$model.url_name}{*$model.id_feature_value*}">{$model.value}</option>
+                    <option data-id_feature_value="{$model.id_feature_value}" value="{$model.url_name}{*$model.id_feature_value*}">{$model.value}</option>
                 {/foreach}
             </select>
         </div>

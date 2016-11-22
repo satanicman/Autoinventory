@@ -365,4 +365,36 @@ class Feature extends FeatureCore
         $position = DB::getInstance()->getValue($sql);
         return (is_numeric($position)) ? $position : - 1;
     }
+
+    /**
+     * Get all values for a given feature and language
+     *
+     * @param int $id_lang Language id
+     * @param bool $id_feature Feature id
+     * @return array Array with feature's values
+     */
+    public static function getFeatureValuesWithLang($id_lang, $id_feature, $custom = false,$id_feature_value_parent = false)
+    {
+        if($id_feature_value_parent){
+            $sql = 'SELECT *
+			FROM `' . _DB_PREFIX_ . 'feature_value` v
+			LEFT JOIN `' . _DB_PREFIX_ . 'feature_value_lang` vl
+				ON (v.`id_feature_value` = vl.`id_feature_value` AND vl.`id_lang` = ' . (int)$id_lang . ')
+			WHERE v.`id_feature` = ' . (int)$id_feature . ' AND v.id_feature_value_parent='.(int)$id_feature_value_parent.'
+				' . (!$custom ? 'AND (v.`custom` IS NULL OR v.`custom` = 0)' : '') . '
+			ORDER BY vl.`value` ASC';
+            return Db::getInstance()->executeS($sql );
+        }else {
+            return Db::getInstance()->executeS('
+			SELECT *
+			FROM `' . _DB_PREFIX_ . 'feature_value` v
+			LEFT JOIN `' . _DB_PREFIX_ . 'feature_value_lang` vl
+				ON (v.`id_feature_value` = vl.`id_feature_value` AND vl.`id_lang` = ' . (int)$id_lang . ')
+			WHERE v.`id_feature` = ' . (int)$id_feature . '
+				' . (!$custom ? 'AND (v.`custom` IS NULL OR v.`custom` = 0)' : '') . '
+			ORDER BY vl.`value` ASC
+		');
+        }
+    }
+
 }
