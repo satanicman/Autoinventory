@@ -273,8 +273,8 @@
 
 		{if $category->id != 14}
 			<ul class="nav nav-tabs big manufacturer-nav">
-				<li class="active"><a data-toggle="tab" href="#buy">{l s="Buy"}</a></li>
-				<li><a data-toggle="tab" href="#lease">{l s="Lease"}</a></li>
+				<li data-type="buy" class="active"><a data-toggle="tab" href="#">{l s="Buy"}</a></li>
+				<li data-type="lease"><a data-toggle="tab" href="#">{l s="Lease"}</a></li>
 			</ul>
 		{/if}
 		<h1 class="header main medium">{l s="Adjust search results"}</h1>
@@ -350,15 +350,6 @@
 							{include file="./nbr-product-page.tpl"}
 						{else}
 							<p class="alert alert-warning">{l s='No buy products for this manufacturer.'}</p>
-						{/if}
-					</div>
-					<div id="lease" class="tab-pane fade">
-						{if $products}
-							{include file="./product-list.tpl" products=$products}
-							{include file="$tpl_dir./pagination.tpl"}
-							{include file="./nbr-product-page.tpl"}
-						{else}
-							<p class="alert alert-warning">{l s='No lease products for this manufacturer.'}</p>
 						{/if}
 					</div>
 				</div>

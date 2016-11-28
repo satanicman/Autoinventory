@@ -23,6 +23,35 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 $(document).ready(function(){
+	// var tab = location.href.match(/(type-)+[a-zA-z0-9.]*(&|$)/);
+	// if(tab && tab.length)
+	// 	tab = tab[0].replace(/(type-)+/, '');
+	// if(tab) {
+	// 	$('.manufacturer-nav > li').each(function () {
+	// 		var that = $(this);
+	// 		that.removeClass('active');
+	// 		if (that.data('type') === tab)
+	// 			that.addClass('active');
+	// 	});
+	// } else {
+	// 	$('.manufacturer-nav > li:first-of-type').addClass('active');
+	// }
+	var type = $('.manufacturer-nav > li.active').data('type'),
+		regex = /(type-)+[a-zA-z0-9.&]*/;
+	if(type) {
+		if(location.href.search(regex) != -1)
+			location.href = location.href.replace(regex, 'type-' + type);
+		else
+			location.href = (location.href.search(/#\//) === -1 ? '#/' : '') + 'type-' + type;
+	}
+
+	$(document).on('click', '.manufacturer-nav > li:not(.active)', function() {
+		var href = location.href.replace(/(type-)+[a-zA-z0-9.&]*(\/)*/, '');
+		href = href.replace(/(#\/)$/, '');
+		href += (href.search(/#\//) === -1 ? '#/' : '/') + 'type-' + $(this).data('type');
+		location.href = href;
+	});
+
 	resizeCatimg();
 });
 
