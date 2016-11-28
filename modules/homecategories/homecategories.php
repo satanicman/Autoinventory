@@ -54,9 +54,13 @@ class Homecategories extends Module
         $this->context->controller->addCSS(_PS_THEME_DIR_.'/css/category.css', 'all');
     }
 
+    public function hookDealers($params) {
+        return $this->hookDisplayHome($params);
+    }
+
     public function hookDisplayHome($params)
     {
-        $root_cat = Category::getRootCategory($this->context->cookie->id_lang);
+        $root_cat = new Category(Configuration::get('PS_WRAP_CATEGORY'), $this->context->language->id, $this->context->shop->id);
         $this->context->smarty->assign(
             array(
                 'categories' => $root_cat->getSubCategories($this->context->cookie->id_lang)
