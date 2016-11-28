@@ -26,7 +26,9 @@
 $(document).ready(function(){
 
 	$('.make_select').change(function () {
-		var id_feature_value = $(this).children('option:selected').attr('data-id_feature_value');
+		var id_feature_value = $(this).children('option:selected').attr('data-id_feature_value'),
+			type = $(this).data('type'),
+			select = $('#model_select_' + type);
 		$.ajax({
 			type: 'POST',
 			headers: { "cache-control": "no-cache" },
@@ -37,9 +39,9 @@ $(document).ready(function(){
 			data: '&ajax=true&id_feature_value='+id_feature_value+'&token=' + static_token ,
 			success: function(jsonData)
 			{
-				$('#model_select_buy').empty();
+				select.empty();
 				for ( sellerId in jsonData ) {
-					$('#model_select_buy').append('<option value="'+jsonData[sellerId].url_name+'">'+jsonData[sellerId].value+'</option>');
+					select.append('<option value="'+jsonData[sellerId].url_name+'">'+jsonData[sellerId].value+'</option>');
 				}
 			},
 

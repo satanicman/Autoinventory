@@ -541,7 +541,7 @@ class MyAccountController extends MyAccountControllerCore
                 }
                 if($id_make && $id_model) {
                     $sql = "UPDATE " . _DB_PREFIX_ . "feature_value SET id_feature_value_parent={$id_make} WHERE id_feature_value={$id_model}";
-                    Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
+                    Db::getInstance(_PS_USE_SQL_SLAVE_)->execute($sql);
                 }
                 //category
                 Product::addFeatureProductImport($product->id, 33, $category);
