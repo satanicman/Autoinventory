@@ -214,9 +214,9 @@
             <div class="sort sort-block">
                 {include file="./product-sort.tpl"}
             </div>
-            <div class="sort-block medium">
-                <button class="btn btn-default no-change">{l s="Current Lease Offers"}</button>
-            </div>
+            {*<div class="sort-block medium">*}
+                {*<button class="btn btn-default no-change">{l s="Current Lease Offers"}</button>*}
+            {*</div>*}
         </div>
 
         <div class="sub-column-container clearfix">

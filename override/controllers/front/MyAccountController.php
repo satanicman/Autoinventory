@@ -47,7 +47,7 @@ class MyAccountController extends MyAccountControllerCore
 
         $this->ajax = Tools::isSubmit('ajax', 0);
 
-        if(Tools::isSubmit('downloadImages'))
+        if(Tools::isSubmit('downloadImages') || Tools::isSubmit('myAccountAddImages'))
             $this->downloadImages();
         elseif(Tools::isSubmit('removeImages')) {
             $this->removeImages();
@@ -189,19 +189,29 @@ class MyAccountController extends MyAccountControllerCore
             }
             if(isset($_GET['status']) && $status = $_GET['status']) {
                 $product = new Product($id_product, true, $this->context->language->id, $this->context->shop->id);
-                $product->status = $status;
-                if($status == 3)
-                    $product->active = 0;
-                $product->update();
+                if($status != 4) {
+                    $product->status = $status == -1 ? 0 : $status;
+                    if ($status == 3)
+                        $product->active = 0;
+
+                    $product->update();
+                } else {
+                    $product->delete();
+                }
                 Tools::redirect('my-account');
             }
             if(!$this->errors) {
                 $this->product = new Product($id_product, true, $this->context->language->id, $this->context->shop->id);
                 $feature = array();
+                $fields = array();
                 foreach($this->product->getFrontFeatures($this->context->language->id) as $f) {
                     $feature[$f['id_feature']] = $f;
                 }
+                foreach($this->product->getFrontFeatures($this->context->language->id, 0) as $f) {
+                    $fields[$f['id_feature']] = $f;
+                }
                 $this->product->features = $feature;
+                $this->product->fields = $fields;
                 $this->context->smarty->assign('product', $this->product);
             }
         }
@@ -218,12 +228,16 @@ class MyAccountController extends MyAccountControllerCore
             $category = new Category($manufacturer_id, Configuration::get('PS_LANG_DEFAULT'));
             $products = array();
             $products[0]['nbProducts'] = $category->getProducts(null, null, null, $this->orderBy, $this->orderWay, true);
+            $products['pending']['nbProducts'] = $category->getProducts(null, null, null, $this->orderBy, $this->orderWay, true, false);
             $products[3]['nbProducts'] = $category->getProducts(null, null, null, $this->orderBy, $this->orderWay, true, false, false, 1, true, null, 3);
 
             foreach ($products as $type => $product) {
                 $this->pagination((int)$product['nbProducts']); // Pagination must be call after "getProducts"
 
-                $product['cat_products'] = $products[$type]['cat_products'] = $category->getProducts($this->context->language->id, (int)$this->p, (int)$this->n, $this->orderBy, $this->orderWay, false, ($type == 3 ? false : true), false, 1, true, null, $type);
+                if($type === 'pending') {
+                    $product['cat_products'] = $products[$type]['cat_products'] = $category->getProducts($this->context->language->id, (int)$this->p, (int)$this->n, $this->orderBy, $this->orderWay, false, false);
+                } else
+                    $product['cat_products'] = $products[$type]['cat_products'] = $category->getProducts($this->context->language->id, (int)$this->p, (int)$this->n, $this->orderBy, $this->orderWay, false, ($type == 3 ? false : true), false, 1, true, null, $type);
 
                 $this->addColorsToProductList($product['cat_products']);
 
@@ -426,7 +440,7 @@ class MyAccountController extends MyAccountControllerCore
                 $i++;
             }
         }
-
+//        $this->errors = array();
         if (!count($this->errors)) {
             $features = Tools::getValue('features');
 
@@ -469,6 +483,8 @@ class MyAccountController extends MyAccountControllerCore
                     $product->addToCategories($cats);
                 }
 
+                $id_make = 0;
+                $id_model = 0;
                 foreach ($features as $id => $feature) {
                     if ($id === 'features' && $feature) {
                         foreach ($feature as $fid => $f) {
@@ -516,6 +532,16 @@ class MyAccountController extends MyAccountControllerCore
                     }
 
                     Product::addFeatureProductImport($product->id, $id, $id_feature_value);
+                    if($feature['required'] == 'Make'){
+                        $id_make = $id_feature_value;
+                    }
+                    if($feature['required'] == 'Model'){
+                        $id_model = $id_feature_value;
+                    }
+                }
+                if($id_make && $id_model) {
+                    $sql = "UPDATE " . _DB_PREFIX_ . "feature_value SET id_feature_value_parent={$id_make} WHERE id_feature_value={$id_model}";
+                    Db::getInstance(_PS_USE_SQL_SLAVE_)->execute($sql);
                 }
                 //category
                 Product::addFeatureProductImport($product->id, 33, $category);
@@ -838,7 +864,7 @@ class MyAccountController extends MyAccountControllerCore
     private function downloadImages()
     {
         $photos = $_FILES['image_product'];
-        $product_id = Tools::getValue('id');
+        $product_id = Tools::getValue('product_id');
         if(!$product_id) {
             if ($this->ajax)
                 die(false);
@@ -855,17 +881,17 @@ class MyAccountController extends MyAccountControllerCore
         }
 
         $product = new Product($product_id, true, $this->context->language->id, $this->context->shop->id);
+        $last = false;
+        for ($i = 0; $i < count($photos['tmp_name']); $last = ((++$i + 1) === count($photos['tmp_name']))) {
+            $image = new Image();
+            $image->id_product = $product->id;
+            if((isset($_POST['cover']) && $photos['name'][$i] === $_POST['cover']) || ($last && !Image::getCover($product->id)))
+                $image->cover = 1;
+            $image->position = 0;
+            $image->legend = array_fill_keys(Language::getIDs(), (string)$photos['name'][$i] . ' - ' . $product->name);
+            $image->save();
+            $name = $image->getPathForCreation();
 
-        $image = new Image();
-        $image->id_product = $product->id;
-        if(!Image::getCover($product->id))
-            $image->cover = 1;
-        $image->position = 0;
-        $image->legend = array_fill_keys(Language::getIDs(), (string)$photos['name'][0] . ' - ' . $product->name);
-        $image->save();
-        $name = $image->getPathForCreation();
-
-        for ($i = 0; $i < count($photos['tmp_name']); $i++) {
             if ($photos['size'][$i] < 5000000) {
                 move_uploaded_file($photos['tmp_name'][$i], $name . '.' . $image->image_format);
             } else {
@@ -933,11 +959,6 @@ class MyAccountController extends MyAccountControllerCore
         if($customer->subscription_id) {
             $response = Billing::cancelSubscription($customer->subscription_id);
             if (($response != null) && ($response->getMessages()->getResultCode() == "Ok")) {
-//                $customer->subscription_id = '';
-//                $customer->update();
-//                echo "<pre>";
-//                print_r($customer->subscription_id);
-//                echo "</pre>";
                 if($this->ajax) {
                     die(true);
                 } else {

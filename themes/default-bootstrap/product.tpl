@@ -220,7 +220,7 @@
                     {/if}
                 </div>
                 <form method="POST" action="{$link->getPageLink('ajax', true)|escape:'html':'UTF-8'}" class="product-question-block" id="product-question-block">
-                    <h3 class="product-question-block-title product-title_medium">{l s="Ask a quastion"}</h3>
+                    <h3 class="product-question-block-title product-title_medium">{l s="Ask a question"}</h3>
                     <div class="form-group">
                         <input type="text" class="form-control is_required validate" data-validate="isName" placeholder="{l s='Your Name'}" name="name">
                     </div>

@@ -22,6 +22,12 @@
 *  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 *}
+{if isset($cms) && $cms->id == 7}
+	{capture name='dealers'}{hook h='dealers'}{/capture}
+	{if $smarty.capture.dealers}
+		{$smarty.capture.dealers}
+	{/if}
+{else}
 {if isset($cms) && !isset($cms_category)}
 	{if !$cms->active}
 		<br />
@@ -80,3 +86,4 @@
 {addJsDefL name=adtoken}{$smarty.get.adtoken|escape:'html':'UTF-8'}{/addJsDefL}
 {/if}
 {/strip}
+{/if}

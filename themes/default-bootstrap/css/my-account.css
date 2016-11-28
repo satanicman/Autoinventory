@@ -50,8 +50,11 @@ The `sprites` mixin generates identical output to the CSS template
   display: -ms-flexbox;
   display: flex;
 }
+.myac-wrapper .product_list.grid .ajax_block_product {
+  height: 425px;
+  padding: 15px;
+}
 .myac-wrapper #description {
-  visibility: hidden;
   width: 100%;
   height: 300px;
 }

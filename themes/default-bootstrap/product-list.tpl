@@ -48,7 +48,7 @@
 		{if $totModuloMobile == 0}{assign var='totModuloMobile' value=$nbItemsPerLineMobile}{/if}
 		<li class="ajax_block_product">
 			<div class="product-container clearfix" itemscope itemtype="https://schema.org/Product">
-				<div class="left-block">
+				<div class="left-block col-lg-4 col-md-4 col-sm-12">
 					<div class="product-image-container">
 						<a class="product_img_link" href="{$product.link|escape:'html':'UTF-8'}" title="{$product.name|escape:'html':'UTF-8'}" itemprop="url">
 							<img class="replace-2x img-responsive" src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'home_default')|escape:'html':'UTF-8'}" alt="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" title="{if !empty($product.legend)}{$product.legend|escape:'html':'UTF-8'}{else}{$product.name|escape:'html':'UTF-8'}{/if}" {if isset($homeSize)} width="{$homeSize.width}" height="{$homeSize.height}"{/if} itemprop="image" />
@@ -63,7 +63,7 @@
                         </div>
 					</div>
 				</div>
-				<div class="center-block">
+				<div class="center-block col-lg-8 col-md-8 col-sm-12">
 					<h5 itemprop="name" class="clearfix">
 						{if isset($product.pack_quantity) && $product.pack_quantity}{$product.pack_quantity|intval|cat:' x '}{/if}
 						<a class="product-name medium" href="{$product.link|escape:'html':'UTF-8'}"
@@ -71,7 +71,7 @@
 							{$product.name|truncate:45:'...'|escape:'html':'UTF-8'}
 						</a>
 					</h5>
-					<div class="left">
+					<div class="left col-lg-9 col-md-9 col-sm-12">
 						<table class="product-features-table">
 							{assign var=open value=0}
 							{foreach from=$product.features item=feature name=features}
@@ -93,7 +93,7 @@
 																alt="{l s="auto check"}"></div>
 						</div>
 					</div>
-					<div class="right-block">
+					<div class="right-block col-lg-3 col-md-3 col-sm-12">
 						{if (!$PS_CATALOG_MODE AND ((isset($product.show_price) && $product.show_price) || (isset($product.available_for_order) && $product.available_for_order)))}
 							<div class="content_price">
 								{if isset($product.show_price) && $product.show_price && !isset($restricted_country_mode)}

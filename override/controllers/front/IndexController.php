@@ -43,6 +43,8 @@ class IndexController extends IndexControllerCore
     protected $id_feature_distance= 17;
 
     protected function getUrlFeatureValue($data){
+        if(!$data)
+            return array();
         if (!$anchor = Configuration::get('PS_ATTRIBUTE_ANCHOR_SEPARATOR'))
             $anchor = '-';
 
@@ -118,9 +120,6 @@ class IndexController extends IndexControllerCore
                     $price['max'] = $product['price'];
             }
         }
-     
-
-
 
         $this->context->smarty->assign(array(
             'prices' => $price,
@@ -147,5 +146,17 @@ class IndexController extends IndexControllerCore
             'models' => $models,
             'types' => $types,
         ));
+    }
+
+    public function postProcess()
+    {
+
+        parent::postProcess();
+        if(Tools::getValue('ajax') && $id_feature_value = Tools::getValue('id_feature_value')) {
+            $models = Feature::getFeatureValuesWithLang($this->context->language->id,$this->id_feature_model,false,$id_feature_value);
+            $models = $this->getUrlFeatureValue($models);
+            die(Tools::jsonEncode($models));
+        }
+
     }
 }

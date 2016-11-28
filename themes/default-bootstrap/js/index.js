@@ -24,6 +24,30 @@
 */
 
 $(document).ready(function(){
+
+	$('.make_select').change(function () {
+		var id_feature_value = $(this).children('option:selected').attr('data-id_feature_value'),
+			type = $(this).data('type'),
+			select = $('#model_select_' + type);
+		$.ajax({
+			type: 'POST',
+			headers: { "cache-control": "no-cache" },
+			url: baseUri + 'index.php' + '?rand=' + new Date().getTime(),
+			async: false,
+			cache: false,
+			dataType : "json",
+			data: '&ajax=true&id_feature_value='+id_feature_value+'&token=' + static_token ,
+			success: function(jsonData)
+			{
+				select.empty();
+				for ( sellerId in jsonData ) {
+					select.append('<option value="'+jsonData[sellerId].url_name+'">'+jsonData[sellerId].value+'</option>');
+				}
+			},
+
+		});
+	});
+
 	$('#home-page-tabs li:first, #index .tab-content ul:first').addClass('active');
 	var slider = $('#price_slider');
 	$(document).on('click', '#find_my_car', function () {

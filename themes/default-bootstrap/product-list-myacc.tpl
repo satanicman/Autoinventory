@@ -105,10 +105,15 @@
 						{/if}
 					</table>
 					{if $status != 3}
-					<div class="button-container">
-						<a href="{$link->getPageLink('my-account', true, null, 'tab=list-a-car'|cat:'&id_product='|cat:$product.id_product)|escape:'html':'UTF-8'}" class="myacc-btn">{l s="Edit"}</a>
-						<a href="{$link->getPageLink('my-account', true, null, 'tab=list-a-car'|cat:'&id_product='|cat:$product.id_product|cat:'&status=3')|escape:'html':'UTF-8'}" class="myacc-btn red">{l s="Delete"}</a>
-					</div>
+						<div class="button-container">
+							<a href="{$link->getPageLink('my-account', true, null, 'tab=list-a-car'|cat:'&id_product='|cat:$product.id_product)|escape:'html':'UTF-8'}" class="myacc-btn">{l s="Edit"}</a>
+							<a href="{$link->getPageLink('my-account', true, null, 'tab=list-a-car'|cat:'&id_product='|cat:$product.id_product|cat:'&status=3')|escape:'html':'UTF-8'}" class="myacc-btn red">{l s="Delete"}</a>
+						</div>
+					{else}
+						<div class="button-container">
+							<a href="{$link->getPageLink('my-account', true, null, 'tab=list-a-car'|cat:'&id_product='|cat:$product.id_product|cat:'&status=-1')|escape:'html':'UTF-8'}" class="myacc-btn">{l s="Relist"}</a>
+							<a href="{$link->getPageLink('my-account', true, null, 'tab=list-a-car'|cat:'&id_product='|cat:$product.id_product|cat:'&status=4')|escape:'html':'UTF-8'}" class="myacc-btn red">{l s="Delete"}</a>
+						</div>
 					{/if}
 				</div>
 			</div><!-- .product-container> -->
