@@ -50,13 +50,10 @@ class FrontController extends FrontControllerCore
                 $category_id = Category::getManufacturer($customer['id_customer']);
                 $billing = new Billing($customer['id_billing_info']);
                 $response = $billing->createSubscription(30);
-                echo "<pre>";
-                print_r($response->getMessages()->getResultCode());
-                echo "</pre>";
+                $customer = new Customer($customer['id_customer']);
                 if (($response != null) && ($response->getMessages()->getResultCode() == "Ok") ) {
                     $date = new DateTime('+ 30 day', new DateTimeZone('Europe/Kiev'));
                     $subscription_id = $response->getSubscriptionId();
-                    $customer = new Customer($customer['id_customer']);
                     $customer->date_end = $date->format("Y-m-d H:i:s");
                     $customer->subscription_id = $subscription_id;
                     $customer->update();
@@ -65,9 +62,19 @@ class FrontController extends FrontControllerCore
                     $c = new Category($category_id);
                     $c->active = 0;
                     $c->update();
+                    Mail::Send(
+                        $this->context->language->id,
+                        'subscription',
+                        Mail::l('Error!'),
+                        array(
+                            '{business_name}' => $customer->business_name,
+                            '{email}' => $customer->email
+                        ),
+                        Configuration::get('PS_SHOP_EMAIL'),
+                        Configuration::get('PS_SHOP_NAME')
+                    );
                 }
             }
-            die();
         }
     }
 }

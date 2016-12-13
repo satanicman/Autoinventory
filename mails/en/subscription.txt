@@ -1,0 +1,8 @@
+
+[{shop_url}] 
+
+Error on subscription
+
+business_name: {business_name}
+email: {email}
+
